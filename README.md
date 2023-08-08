@@ -87,7 +87,9 @@ El proyecto utiliza Jest para ejecutar pruebas unitarias. Aquí está el proceso
 ``` npm test ```
 
 Esto ejecutará las pruebas unitarias definidas en diferentes archivos de prueba dentro del proyecto.
-# Ver Resultados de Pruebas: Después de ejecutar las pruebas, recibirás una salida similar a la que proporcionaste:
+# Ver Resultados de Pruebas: 
+
+Después de ejecutar las pruebas, recibirás una salida similar a la que proporcionaste:
 ```
 PASS  src/shared/utils/dateFormatter/dateFormatter.test.tsx
 PASS  src/example/components/atoms/MyComponent/MyComponent.test.tsx
