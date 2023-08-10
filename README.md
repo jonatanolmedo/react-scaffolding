@@ -79,6 +79,19 @@ npm install
 
 Esto iniciará tu aplicación de React Native.
 
+# Instalar PODs (iOS):
+``` 
+cd ios
+npx-pod install 
+```
+
+Esto instalara los PODS de tu aplicación de React Native.
+
+# Validar versión Java para Android:
+
+En caso de recibir errores de gradlew, se debe validar utilizar una versión compatible con Gradlew. Validar compatibilidad en: https://docs.gradle.org/current/userguide/compatibility.html
+
+
 ## Ejecución de Pruebas Unitarias
 
 El proyecto utiliza Jest para ejecutar pruebas unitarias. Aquí está el proceso para ejecutar las pruebas:
