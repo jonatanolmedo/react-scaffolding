@@ -22,7 +22,7 @@ const HomeScreen: React.FC = () => {
       <Header />
       <View style={styles.spacer} />
       <Text style={styles.dateText}>Context Example:</Text>
-      <Text style={styles.title}>Welcome, {myContextData?.name}!</Text>
+      <Text style={styles.title}>Welcome, {myContextData?.email}!</Text>
       <View style={styles.spacer} />
       <Text style={styles.dateText}>DateFormatter Example:</Text>
       <Text style={styles.dateText}>Today's Date: {formattedDate}</Text>
