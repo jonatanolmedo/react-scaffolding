@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import MyContext from './MyContext';
 
 interface MyContextData {
-  name: string;
-  setName: (name: string) => void; // Agrega esta función para establecer el nombre
+  email: string;
+  setEmail: (email: string) => void; // Agrega esta función para establecer el email
+  password: string;
+  setPassword: (password: string) => void; // Agrega esta función para establecer el password
 }
 
 interface MyProviderProps {
@@ -12,11 +14,14 @@ interface MyProviderProps {
 }
 
 const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
-  const [name, setName] = useState<string>(''); // Estado para almacenar el nombre
+  const [email, setEmail] = useState<string>(''); // Estado para almacenar el email
+  const [password, setPassword] = useState<string>(''); // Estado para almacenar el password
 
   const contextData: MyContextData = {
-    name,
-    setName, // Asigna la función setName al contexto
+    email,
+    setEmail, // Asigna la función setName al contexto
+    password,
+    setPassword,
   };
 
   return <MyContext.Provider value={contextData}>{children}</MyContext.Provider>;

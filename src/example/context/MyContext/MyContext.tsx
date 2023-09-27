@@ -3,8 +3,10 @@ import React, { createContext, useContext, useState } from 'react';
 
 // Define your context data type here
 interface MyContextData {
-  name: string;
-  setName: (name: string) => void; // Agrega esta función para establecer el nombre
+  email: string;
+  setEmail: (email: string) => void; // Agrega esta función para establecer el email
+  password: string;
+  setPassword: (password: string) => void; // Agrega esta función para establecer el password
 }
 
 const MyContext = createContext<MyContextData | null>(null);
