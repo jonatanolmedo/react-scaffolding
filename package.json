@@ -4,6 +4,11 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:dev": "react-native run-android --appIdSuffix debug --mode debug",
+    "android:prod": "react-native run-android --mode release",
+    "android:apk:dev-prepare": "yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "android:apk:dev": "cd android && ./gradlew assembleDebug && cd ..",
+    "android:apk:prod": "cd android && ./gradlew assembleRelease && cd ..",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
