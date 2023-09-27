@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
@@ -91,6 +93,7 @@ android {
     }
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
             signingConfig signingConfigs.debug
         }
         release {
@@ -99,6 +102,19 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    applicationVariants.all { variant ->
+        def packageJson = new JsonSlurper().parse(file('../../package.json'))
+        def appName = packageJson.name
+        if (variant.buildType.name == "release") {
+            variant.outputs.all {
+                outputFileName = "[R] ${appName}-${packageJson.version}.apk"
+            }
+        } else {
+            variant.outputs.all {
+                outputFileName = "[D] ${appName}-${packageJson.version}.apk"
+            }
         }
     }
 }
