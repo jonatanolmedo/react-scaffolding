@@ -30,7 +30,7 @@ const Button: React.ForwardRefRenderFunction<TouchableOpacity, Props> = (
 
 const styles = StyleSheet.create({
   button: {
-    height: 60,
+    height: 50,
     borderRadius: 10,
     elevation: 5,
     shadowColor: "#000",

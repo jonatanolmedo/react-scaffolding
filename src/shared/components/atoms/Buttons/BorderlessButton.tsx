@@ -32,7 +32,7 @@ const BorderlessButton: React.ForwardRefRenderFunction<
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "rgba(0, 0, 0, 0)",
-    height: 60,
+    height: 50,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

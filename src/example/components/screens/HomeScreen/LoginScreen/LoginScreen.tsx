@@ -1,10 +1,6 @@
 // screens/LoginScreen.tsx
-import React, { useRef, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useMyContext } from "../../../../context/MyContext/MyContext";
 import Button from "../../../../../shared/components/atoms/Buttons/Button";
 import Header from "../../../../../shared/components/atoms/Header/Header";
@@ -12,12 +8,16 @@ import TextInputEmail from "../../../../../shared/components/atoms/TextInputFiel
 import TextInputPassword from "../../../../../shared/components/atoms/TextInputField/TextInputPassword";
 import BorderlessButton from "../../../../../shared/components/atoms/Buttons/BorderlessButton";
 import BackgroundLogin from "../../../../../shared/components/atoms/Background/BackgroundLogin";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import LoginNavigationParamsList from "../../../../navigators/LoginNavigationParamsList";
+import { usePrintScreenName } from "../../../../context/hooks/MyHook/usePrintScreenName";
 
-interface LoginScreenProps {
-  onLogin: () => void; // Agrega la definición de la prop 'onLogin'
-}
+const LoginScreen = () => {
+  usePrintScreenName();
 
-const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<LoginNavigationParamsList>>();
   const txtEmail = useRef(null);
   const txtPassword = useRef(null);
   const btnLogin = useRef(null);
@@ -27,59 +27,78 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [inputEmail, setInputEmail] = useState("");
   const { setPassword } = useMyContext();
   const [inputPassword, setInputPassword] = useState("");
+  // Estado para verificar si el usuario está autenticado o no
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Función para manejar el inicio de sesión
+  useEffect(() => {
+    // Aquí va la lógica para autenticar al usuario
+    setIsAuthenticated(true); // Por ejemplo, establece isAuthenticated a true para simular un inicio de sesión exitoso
+  });
 
   const handleLogin = () => {
     setEmail(inputEmail);
     setPassword(inputPassword);
-    onLogin(); // Llama a la función 'onLogin' para indicar que el usuario se ha autenticado
+  };
+
+  const goToWelcomeScreen = () => {
+    navigate("WelcomeScreen", {
+      email: inputEmail,
+      password: inputPassword,
+    });
   };
 
   return (
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.innerContainer}>
-          <BackgroundLogin />
-          <Header
-            title="Pantalla de registro"
-            subtitle="Bienvenido de vuelta, por favor confirma tus datos"
-          />
-          <TextInputEmail
-            ref={txtEmail}
-            value={inputEmail}
-            style={styles.input}
-            placeholder="Email"
-            autoCorrect={false}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={setInputEmail}
-          />
-          <TextInputPassword
-            ref={txtPassword}
-            placeholder="Password"
-            value={inputPassword}
-            style={styles.input}
-            onChangeText={setInputPassword}
-            secureTextEntry={true}
-          />
-          <BorderlessButton
-            ref={btnForgotPassword}
-            title="¿Olvidaste tu contraseña?"
-            style={styles.btnForgotPassword}
-            textColor="#AC2777"
-          />
-          <Button
-            ref={btnLogin}
-            title="Aceptar"
-            style={styles.button}
-            onPress={handleLogin}
-          />
-          <BorderlessButton
-            ref={btnRegister}
-            title="Crear nueva cuenta"
-            style={styles.btnRegister}
-            textColor="#27035F"
-          />
-        </View>
-      </ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.innerContainer}>
+        <BackgroundLogin />
+        <Header
+          title="Pantalla de registro"
+          subtitle="Bienvenido de vuelta, por favor confirma tus datos"
+        />
+        <TextInputEmail
+          ref={txtEmail}
+          value={inputEmail}
+          style={styles.input}
+          placeholder="Email"
+          autoCorrect={false}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          onChangeText={setInputEmail}
+        />
+        <TextInputPassword
+          ref={txtPassword}
+          placeholder="Password"
+          value={inputPassword}
+          style={styles.input}
+          onChangeText={setInputPassword}
+          secureTextEntry={true}
+        />
+        <BorderlessButton
+          ref={btnForgotPassword}
+          title="¿Olvidaste tu contraseña?"
+          style={styles.btnForgotPassword}
+          textColor="#AC2777"
+        />
+        <Button
+          ref={btnLogin}
+          title="Aceptar"
+          style={styles.button}
+          onPress={() => {
+            handleLogin();
+            if (isAuthenticated) {
+              goToWelcomeScreen();
+            }
+          }}
+        />
+        <BorderlessButton
+          ref={btnRegister}
+          title="Crear nueva cuenta"
+          style={styles.btnRegister}
+          textColor="#27035F"
+        />
+      </View>
+    </ScrollView>
   );
 };
 

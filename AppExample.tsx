@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import DomainNavigator from "./src/example/navigators/DomainNavigator"; // Importa el navigator que contiene la navegación de la aplicación
 import MyProvider from "./src/example/context/MyContext/MyProvider";
-import LoginScreen from "./src/example/components/screens/HomeScreen/LoginScreen/LoginScreen"; // Importa la pantalla de inicio de sesión
-import { SafeAreaView } from "react-native-safe-area-context";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import { Navigator } from "./src/example/navigators/Navigator";
 
 // App principal
 const App: React.FC = () => {
@@ -26,20 +25,13 @@ const App: React.FC = () => {
       <MyProvider>
         {/* Wrap NavigationContainer con el proveedor del contexto personalizado */}
         <NavigationContainer>
-          <SafeAreaView
-            style={{
-              flex: 1,
-              paddingTop: Platform.OS === "ios" ? 48 : 0,
-            }}
+          <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === "ios" ? "padding" : undefined}
           >
-            <KeyboardAvoidingView
-              style={styles.container}
-              behavior={Platform.OS === "ios" ? "padding" : undefined}
-            >
-              {/* Renderiza la pantalla de inicio de sesión y pasa la función de manejo del inicio de sesión */}
-              <LoginScreen onLogin={handleLogin} />
-            </KeyboardAvoidingView>
-          </SafeAreaView>
+            {/* Renderiza la pantalla de inicio de sesión y pasa la función de manejo del inicio de sesión */}
+            <Navigator />
+          </KeyboardAvoidingView>
         </NavigationContainer>
       </MyProvider>
     );

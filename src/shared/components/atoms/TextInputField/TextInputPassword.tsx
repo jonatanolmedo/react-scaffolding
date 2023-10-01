@@ -37,6 +37,8 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
       value={value}
       style={[styles.input, style]}
       placeholder={placeholder}
+      placeholderTextColor={styles.placeholderColor.color}
+      cursorColor={styles.placeholderColor.color}
       autoCorrect={autoCorrect}
       keyboardType={keyboardType}
       autoCapitalize={autoCapitalize}
@@ -57,8 +59,11 @@ const styles = StyleSheet.create({
     columnGap: 10,
     paddingVertical: 16,
     borderWidth: 2,
-    borderColor: "#482291",
+    borderColor: "#626262",
     borderRadius: 10,
+  },
+  placeholderColor: {
+    color: "#626262",
   },
 });
 
