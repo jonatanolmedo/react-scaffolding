@@ -1,17 +1,17 @@
 // screens/LoginScreen.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { useMyContext } from "../../../../context/MyContext/MyContext";
-import Button from "../../../../../shared/components/atoms/Buttons/Button";
-import Header from "../../../../../shared/components/atoms/Header/Header";
-import TextInputEmail from "../../../../../shared/components/atoms/TextInputField/TextInputEmail";
-import TextInputPassword from "../../../../../shared/components/atoms/TextInputField/TextInputPassword";
-import BorderlessButton from "../../../../../shared/components/atoms/Buttons/BorderlessButton";
-import BackgroundLogin from "../../../../../shared/components/atoms/Background/BackgroundLogin";
+import { useMyContext } from "../../../context/MyContext/MyContext";
+import Button from "../../../../shared/components/atoms/Buttons/Button";
+import Header from "../../../../shared/components/atoms/Header/Header";
+import TextInputEmail from "../../../../shared/components/atoms/TextInputField/TextInputEmail";
+import TextInputPassword from "../../../../shared/components/atoms/TextInputField/TextInputPassword";
+import BorderlessButton from "../../../../shared/components/atoms/Buttons/BorderlessButton";
+import BackgroundLogin from "../../../../shared/components/atoms/Background/BackgroundLogin";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import LoginNavigationParamsList from "../../../../navigators/LoginNavigationParamsList";
-import { usePrintScreenName } from "../../../../context/hooks/MyHook/usePrintScreenName";
+import LoginNavigationParamsList from "../../../navigators/LoginNavigationParamsList";
+import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
 
 const LoginScreen = () => {
   usePrintScreenName();

@@ -1,5 +1,5 @@
 /**
- * Define screens and navigation parameters for the Onboarding navigation stack.
+ * Define screens and navigation parameters for navigation stack.
  *
  * This ensures a typesafe use of `createStackNavigator` and screens.
  */
@@ -9,6 +9,7 @@ export type LoginNavigationParamsList = {
     email: string,
     password: string,
   },
+  BottomTabNavigator: undefined,
   HomeScreen: undefined,
 }
 
