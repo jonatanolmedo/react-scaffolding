@@ -1,19 +1,17 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, ScrollView, Image } from "react-native";
-import Button from "../../../../../shared/components/atoms/Buttons/Button";
-import Header from "../../../../../shared/components/atoms/Header/Header";
-import BackgroundLogin from "../../../../../shared/components/atoms/Background/BackgroundLogin";
-import { WithLocalSvg } from "react-native-svg";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
-import LoginNavigationParamsList from "../../../../navigators/LoginNavigationParamsList";
-import { usePrintScreenName } from "../../../../context/hooks/MyHook/usePrintScreenName";
+import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
+import LoginNavigationParamsList from "../../../navigators/LoginNavigationParamsList";
+import BackgroundLogin from "../../../../shared/components/atoms/Background/BackgroundLogin";
+import Header from "../../../../shared/components/atoms/Header/Header";
+import Button from "../../../../shared/components/atoms/Buttons/Button";
+import BackgroundWelcome from "../../../../shared/components/atoms/Background/BackgroundWelcome";
 
 interface Props
   extends StackScreenProps<LoginNavigationParamsList, "WelcomeScreen"> {}
 
-const ImageFile = require("../../../../../shared/assets/images/work-from-home.svg");
-
-const WelcomeScreen = ({ route }: Props) => {
+const WelcomeScreen = ({ route, navigation }: Props) => {
   usePrintScreenName();
   const btnContinue = useRef(null);
   const params = route.params;
@@ -27,13 +25,13 @@ const WelcomeScreen = ({ route }: Props) => {
           title="¡Felicidades!"
           subtitle="¡Has ingresado con éxito! Ahora estás listo para comenzar."
         />
-        <WithLocalSvg
-          style={{ marginBottom: 72 }}
-          width="100%"
-          height="200"
-          asset={ImageFile}
+        <BackgroundWelcome />
+        <Button
+          ref={btnContinue}
+          title="Aceptar"
+          style={styles.button}
+          onPress={() => navigation.navigate("BottomTabNavigator")}
         />
-        <Button ref={btnContinue} title="Aceptar" style={styles.button} />
       </View>
     </ScrollView>
   );
