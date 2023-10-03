@@ -6,6 +6,8 @@ interface Props {
   titleStyle?: StyleProp<ViewStyle>;
   subtitle?: string;
   subtitleStyle?: StyleProp<ViewStyle>;
+  testId?: string;
+  accesibilityLabel?: string;
 }
 
 const Header: React.FC<Props> = ({
@@ -13,11 +15,19 @@ const Header: React.FC<Props> = ({
   titleStyle,
   subtitle,
   subtitleStyle,
+  testId,
+  accesibilityLabel,
 }) => {
   return (
     <View style={styles.header}>
       <Text style={[styles.title, titleStyle]}>{title}</Text>
-      <Text style={[styles.subtitle, subtitleStyle]}>{subtitle}</Text>
+      <Text
+        testID={testId}
+        accessibilityLabel={accesibilityLabel}
+        style={[styles.subtitle, subtitleStyle]}
+      >
+        {subtitle}
+      </Text>
     </View>
   );
 };

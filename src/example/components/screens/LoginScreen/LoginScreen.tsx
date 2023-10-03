@@ -12,6 +12,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import LoginNavigationParamsList from "../../../navigators/LoginNavigationParamsList";
 import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
+import StringsId from "../../../../constants/StringsId";
 
 const LoginScreen = () => {
   usePrintScreenName();
@@ -53,11 +54,15 @@ const LoginScreen = () => {
       <View style={styles.innerContainer}>
         <BackgroundLogin />
         <Header
+          testId={StringsId.labelSubtitle}
+          accesibilityLabel={StringsId.labelSubtitle}
           title="Pantalla de registro"
           subtitle="Bienvenido de vuelta, por favor confirma tus datos"
         />
         <TextInputEmail
           ref={txtEmail}
+          testId={StringsId.txtEmail}
+          accesibilityLabel={StringsId.txtEmail}
           value={inputEmail}
           style={styles.input}
           placeholder="Email"
@@ -68,6 +73,8 @@ const LoginScreen = () => {
         />
         <TextInputPassword
           ref={txtPassword}
+          testId={StringsId.txtPassword}
+          accesibilityLabel={StringsId.txtPassword}
           placeholder="Password"
           value={inputPassword}
           style={styles.input}
@@ -76,12 +83,16 @@ const LoginScreen = () => {
         />
         <BorderlessButton
           ref={btnForgotPassword}
+          testId={StringsId.btnForgotPassword}
+          accesibilityLabel={StringsId.btnForgotPassword}
           title="¿Olvidaste tu contraseña?"
           style={styles.btnForgotPassword}
           textColor="#AC2777"
         />
         <Button
           ref={btnLogin}
+          testId={StringsId.btnLogin}
+          accesibilityLabel={StringsId.btnLogin}
           title="Aceptar"
           style={styles.button}
           onPress={() => {
@@ -93,6 +104,8 @@ const LoginScreen = () => {
         />
         <BorderlessButton
           ref={btnRegister}
+          testId={StringsId.btnRegister}
+          accesibilityLabel={StringsId.btnRegister}
           title="Crear nueva cuenta"
           style={styles.btnRegister}
           textColor="#27035F"
@@ -138,3 +151,7 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+
+export function testProps(id: string) {
+  return { testID: id, accessibilityLabel: id };
+}

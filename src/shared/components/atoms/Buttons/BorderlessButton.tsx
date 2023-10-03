@@ -12,15 +12,19 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   textColor?: string;
   onPress?: () => void;
+  testId?: string;
+  accesibilityLabel?: string;
 }
 
 const BorderlessButton: React.ForwardRefRenderFunction<
   TouchableOpacity,
   Props
-> = ({ title, style, textColor, onPress }, ref) => {
+> = ({ title, style, textColor, onPress, testId, accesibilityLabel }, ref) => {
   return (
     <TouchableOpacity
       ref={ref}
+      testID={testId}
+      accessibilityLabel={accesibilityLabel}
       style={[styles.button, style]}
       onPress={onPress}
     >
