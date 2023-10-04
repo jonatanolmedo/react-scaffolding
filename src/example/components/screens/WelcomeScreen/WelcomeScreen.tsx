@@ -7,6 +7,7 @@ import BackgroundLogin from "../../../../shared/components/atoms/Background/Back
 import Header from "../../../../shared/components/atoms/Header/Header";
 import Button from "../../../../shared/components/atoms/Buttons/Button";
 import BackgroundWelcome from "../../../../shared/components/atoms/Background/BackgroundWelcome";
+import StringsId from "../../../../constants/StringsId";
 
 interface Props
   extends StackScreenProps<LoginNavigationParamsList, "WelcomeScreen"> {}
@@ -28,6 +29,8 @@ const WelcomeScreen = ({ route, navigation }: Props) => {
         <BackgroundWelcome />
         <Button
           ref={btnContinue}
+          testId={StringsId.btnContinue}
+          accesibilityLabel={StringsId.btnContinue}
           title="Aceptar"
           style={styles.button}
           onPress={() => navigation.navigate("BottomTabNavigator")}

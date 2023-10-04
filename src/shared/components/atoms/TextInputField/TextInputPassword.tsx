@@ -16,6 +16,8 @@ interface Props {
   autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
   onChangeText?: ((text: string) => void) | undefined;
   secureTextEntry?: boolean | undefined;
+  testId: string;
+  accesibilityLabel: string;
 }
 
 const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
@@ -28,6 +30,8 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
     autoCapitalize,
     onChangeText,
     secureTextEntry,
+    testId,
+    accesibilityLabel,
   },
   ref
 ) => {
@@ -44,6 +48,8 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
       autoCapitalize={autoCapitalize}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
+      testID={testId}
+      accessibilityLabel={accesibilityLabel}
     />
   );
 };

@@ -1,55 +1,56 @@
 import React, { forwardRef } from "react";
 import {
+  Image,
   StyleProp,
   StyleSheet,
-  Text,
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
 
 interface Props {
-  title: string;
   style?: StyleProp<ViewStyle>;
+  color?: string;
   onPress?: () => void;
   testId?: string;
   accesibilityLabel?: string;
 }
 
-const Button: React.ForwardRefRenderFunction<TouchableOpacity, Props> = (
-  { title, style, onPress, testId, accesibilityLabel },
+const BackIcon = require("../../../assets/images/ic_back.png");
+
+const BackButton: React.ForwardRefRenderFunction<TouchableOpacity, Props> = (
+  { style, color, onPress, testId, accesibilityLabel },
   ref
 ) => {
   return (
     <TouchableOpacity
       ref={ref}
-      testID={testId}
-      accessibilityLabel={accesibilityLabel}
       style={[styles.button, style]}
       onPress={onPress}
     >
-      <Text style={styles.txtButton}>{title}</Text>
+      <Image
+        testID={testId}
+        accessibilityLabel={accesibilityLabel}
+        style={styles.imgButton}
+        tintColor={color}
+        source={BackIcon}
+      />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    height: 50,
+    width: 24,
+    height: 24,
+    backgroundColor: "rgba(0, 0, 0, 0)",
     borderRadius: 10,
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
     justifyContent: "center",
     alignItems: "center",
   },
-  txtButton: {
-    color: "white",
-    fontFamily: "Poppins",
-    fontSize: 20,
-    fontWeight: "bold",
+  imgButton: {
+    width: 24,
+    height: 24,
   },
 });
 
-export default forwardRef(Button);
+export default forwardRef(BackButton);

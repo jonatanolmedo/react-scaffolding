@@ -5,6 +5,8 @@ import HomeScreen from "../components/screens/HomeScreen/HomeScreen.screen";
 import ShoppingCartScreen from "../components/screens/ShoppingCartScreen/ShoppingCartScreen";
 import ProfileScreen from "../components/screens/ProfileScreen/ProfileScreen";
 import { Image } from "react-native";
+import BackButton from "../../shared/components/atoms/Buttons/BackButton";
+import StringsId from "../../constants/StringsId";
 
 const BottomTab = createBottomTabNavigator<MainNavigationParamsList>();
 const HomeIcon = require("../../shared/assets/images/ic_home_outline.png");
@@ -20,7 +22,21 @@ export const BottomTabNavigator = () => {
         backgroundColor: "white",
       }}
       screenOptions={({ route }) => ({
-        headerShown: false,
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+          backgroundColor: "#27035F",
+        },
+        headerTitleAlign: "center",
+        headerTintColor: "#FFFFFF",
+        headerTitleStyle: {
+          marginEnd: 24,
+          fontSize: 16,
+          fontWeight: "bold",
+        },
+        headerLeftContainerStyle: {
+          marginStart: 24,
+        },
         tabBarIcon: ({ color }) => {
           let iconName: any;
 
@@ -58,22 +74,51 @@ export const BottomTabNavigator = () => {
         name="HomeScreen"
         options={{
           title: "Inicio",
+          tabBarTestID: StringsId.btnNavHome,
+          tabBarAccessibilityLabel: StringsId.btnNavHome,
         }}
         component={HomeScreen}
       />
       <BottomTab.Screen
         name="CategoriesScreen"
-        options={{ title: "Categorías" }}
+        options={{
+          title: "Categorías",
+          tabBarTestID: StringsId.btnNavCategories,
+          tabBarAccessibilityLabel: StringsId.btnNavCategories,
+          headerLeft: () => (
+            <BackButton
+              testId={StringsId.btnBack}
+              accesibilityLabel={StringsId.btnBack}
+              onPress={() => console.log("Click!")}
+            />
+          ),
+        }}
         component={CategoriesScreen}
       />
       <BottomTab.Screen
         name="ShoppingCartScreen"
-        options={{ title: "Carrito" }}
+        options={{
+          title: "Carrito",
+          tabBarTestID: StringsId.btnNavShoppingCart,
+          tabBarAccessibilityLabel: StringsId.btnNavShoppingCart,
+        }}
         component={ShoppingCartScreen}
       />
       <BottomTab.Screen
         name="ProfileScreen"
-        options={{ title: "Perfil" }}
+        options={{
+          title: "Perfil",
+          headerTitle: "Editar perfil",
+          tabBarTestID: StringsId.btnNavProfile,
+          tabBarAccessibilityLabel: StringsId.btnNavProfile,
+          headerLeft: () => (
+            <BackButton
+              testId={StringsId.btnBack}
+              accesibilityLabel={StringsId.btnBack}
+              onPress={() => console.log("Click!")}
+            />
+          ),
+        }}
         component={ProfileScreen}
       />
     </BottomTab.Navigator>

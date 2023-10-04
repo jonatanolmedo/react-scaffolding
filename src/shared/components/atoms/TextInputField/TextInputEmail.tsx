@@ -15,6 +15,8 @@ interface Props {
   keyboardType?: KeyboardTypeOptions | undefined;
   autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
   onChangeText?: ((text: string) => void) | undefined;
+  testId: string;
+  accesibilityLabel: string;
 }
 
 const TextInputEmail: React.ForwardRefRenderFunction<TextInput, Props> = (
@@ -26,12 +28,16 @@ const TextInputEmail: React.ForwardRefRenderFunction<TextInput, Props> = (
     keyboardType,
     autoCapitalize,
     onChangeText,
+    testId,
+    accesibilityLabel,
   },
   ref
 ) => {
   return (
     <TextInput
       ref={ref}
+      testID={testId}
+      accessibilityLabel={accesibilityLabel}
       value={value}
       style={[styles.input, style]}
       placeholder={placeholder}
