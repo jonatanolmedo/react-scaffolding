@@ -3,7 +3,7 @@ import Svg, { Rect, Circle } from "react-native-svg";
 
 const BackgroundLogin: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="background-container"> 
       <Svg
         style={styles.objects}
         width="428"
