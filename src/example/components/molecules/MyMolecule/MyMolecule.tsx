@@ -5,7 +5,7 @@ import MyComponent from '../../atoms/MyComponent/MyComponent';
 
 const MyMolecule: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="myMoleculeTestId" >
       <Text style={styles.title}>This is MyMolecule!</Text>
       <MyComponent />
     </View>

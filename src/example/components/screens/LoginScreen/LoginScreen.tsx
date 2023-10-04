@@ -50,7 +50,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    <ScrollView contentContainerStyle={styles.scrollViewContent} testID="loginScreen">
       <View style={styles.innerContainer}>
         <BackgroundLogin />
         <Header
