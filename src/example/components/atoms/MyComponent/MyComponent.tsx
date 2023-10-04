@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const MyComponent: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="myComponentTestId" >
       <Text style={styles.text}>This is MyComponent!</Text>
     </View>
   );

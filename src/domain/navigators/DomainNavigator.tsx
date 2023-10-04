@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MyScreen from '../components/screens/MyScreen/MyScreen';
+import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +13,9 @@ const DomainNavigator: React.FC = () => {
       }}
     >
       <Stack.Screen name="Home" component={MyScreen} />
+      <View testID="domainNavigator">
+            {/* Content of your screen */}
+          </View>
       {/* Add more screens here */}
     </Stack.Navigator>
   );
