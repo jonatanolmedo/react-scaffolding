@@ -4,7 +4,7 @@ import { Svg, Path, G } from "react-native-svg";
 
 const BackgroundWelcome: React.FC = () => {
   return (
-    <View style={styles.workfromhome}>
+    <View style={styles.workfromhome} testID="background-welcome">
       <Svg
         style={styles.group}
         width="363"
