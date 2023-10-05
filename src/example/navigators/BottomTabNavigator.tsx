@@ -3,10 +3,10 @@ import CategoriesScreen from "../components/screens/CategoriesScreen/CategoriesS
 import MainNavigationParamsList from "./MainNavigationParamsList";
 import HomeScreen from "../components/screens/HomeScreen/HomeScreen.screen";
 import ShoppingCartScreen from "../components/screens/ShoppingCartScreen/ShoppingCartScreen";
-import ProfileScreen from "../components/screens/ProfileScreen/ProfileScreen";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import BackButton from "../../shared/components/atoms/Buttons/BackButton";
 import StringsId from "../../constants/StringsId";
+import { ProfileNavigator } from "./ProfileNavigator";
 
 const BottomTab = createBottomTabNavigator<MainNavigationParamsList>();
 const HomeIcon = require("../../shared/assets/images/ic_home_outline.png");
@@ -16,111 +16,114 @@ const ProfileIcon = require("../../shared/assets/images/ic_user_profile.png");
 
 export const BottomTabNavigator = () => {
   return (
-    <BottomTab.Navigator
-      initialRouteName="CategoriesScreen"
-      sceneContainerStyle={{
-        backgroundColor: "white",
-      }}
-      screenOptions={({ route }) => ({
-        headerStyle: {
-          elevation: 0,
-          shadowOpacity: 0,
-          backgroundColor: "#27035F",
-        },
-        headerTitleAlign: "center",
-        headerTintColor: "#FFFFFF",
-        headerTitleStyle: {
-          marginEnd: 24,
-          fontSize: 16,
-          fontWeight: "bold",
-        },
-        headerLeftContainerStyle: {
-          marginStart: 24,
-        },
-        tabBarIcon: ({ color }) => {
-          let iconName: any;
+    <View style={{ flex: 1 }}>
+      <BottomTab.Navigator
+        initialRouteName="CategoriesScreen"
+        sceneContainerStyle={{
+          backgroundColor: "white",
+        }}
+        screenOptions={({ route, navigation }) => ({
+          headerStyle: {
+            elevation: 0,
+            shadowOpacity: 0,
+            backgroundColor: "#27035F",
+          },
+          headerTitleAlign: "center",
+          headerTintColor: "#FFFFFF",
+          headerTitleStyle: {
+            marginEnd: 24,
+            fontSize: 16,
+            fontWeight: "bold",
+          },
+          headerLeftContainerStyle: {
+            marginStart: 24,
+          },
+          tabBarIcon: ({ color }) => {
+            let iconName: any;
 
-          switch (route.name) {
-            case "HomeScreen":
-              iconName = HomeIcon;
-              break;
-            case "CategoriesScreen":
-              iconName = CategoriesIcon;
-              break;
-            case "ShoppingCartScreen":
-              iconName = ShoppingIcon;
-              break;
-            case "ProfileScreen":
-              iconName = ProfileIcon;
-              break;
-          }
+            switch (route.name) {
+              case "HomeScreen":
+                iconName = HomeIcon;
+                break;
+              case "CategoriesScreen":
+                iconName = CategoriesIcon;
+                break;
+              case "ShoppingCartScreen":
+                iconName = ShoppingIcon;
+                break;
+              case "ProfileNavigator":
+                iconName = ProfileIcon;
+                break;
+            }
 
-          return <Image tintColor={color} source={iconName} />;
-        },
-        tabBarStyle: {
-          backgroundColor: "black",
-          borderTopColor: "black",
-          borderTopWidth: 0,
-          elevation: 0,
-        },
-        tabBarInactiveBackgroundColor: "black",
-        tabBarActiveTintColor: "white",
-        tabBarLabelStyle: {
-          fontSize: 12,
-        },
-      })}
-    >
-      <BottomTab.Screen
-        name="HomeScreen"
-        options={{
-          title: "Inicio",
-          tabBarTestID: StringsId.btnNavHome,
-          tabBarAccessibilityLabel: StringsId.btnNavHome,
-        }}
-        component={HomeScreen}
-      />
-      <BottomTab.Screen
-        name="CategoriesScreen"
-        options={{
-          title: "Categorías",
-          tabBarTestID: StringsId.btnNavCategories,
-          tabBarAccessibilityLabel: StringsId.btnNavCategories,
-          headerLeft: () => (
-            <BackButton
-              testId={StringsId.btnBack}
-              accesibilityLabel={StringsId.btnBack}
-              onPress={() => console.log("Click!")}
-            />
-          ),
-        }}
-        component={CategoriesScreen}
-      />
-      <BottomTab.Screen
-        name="ShoppingCartScreen"
-        options={{
-          title: "Carrito",
-          tabBarTestID: StringsId.btnNavShoppingCart,
-          tabBarAccessibilityLabel: StringsId.btnNavShoppingCart,
-        }}
-        component={ShoppingCartScreen}
-      />
-      <BottomTab.Screen
-        name="ProfileScreen"
-        options={{
-          title: "Perfil",
-          headerTitle: "Editar perfil",
-          tabBarTestID: StringsId.btnNavProfile,
-          tabBarAccessibilityLabel: StringsId.btnNavProfile,
-          headerLeft: () => (
-            <BackButton
-              testId={StringsId.btnBack}
-              accesibilityLabel={StringsId.btnBack}
-              onPress={() => console.log("Click!")}
-            />
-          ),
-        }}
-        component={ProfileScreen}
-      />
-    </BottomTab.Navigator>
+            return <Image tintColor={color} source={iconName} />;
+          },
+          tabBarStyle: {
+            display: "flex",
+            backgroundColor: "black",
+            borderTopColor: "black",
+            borderTopWidth: 0,
+            elevation: 0,
+          },
+          tabBarInactiveBackgroundColor: "black",
+          tabBarActiveTintColor: "white",
+          tabBarLabelStyle: {
+            fontSize: 12,
+          },
+        })}
+      >
+        <BottomTab.Screen
+          name="HomeScreen"
+          options={{
+            title: "Inicio",
+            tabBarTestID: StringsId.btnNavHome,
+            tabBarAccessibilityLabel: StringsId.btnNavHome,
+          }}
+          component={HomeScreen}
+        />
+        <BottomTab.Screen
+          name="CategoriesScreen"
+          options={{
+            title: "Categorías",
+            tabBarTestID: StringsId.btnNavCategories,
+            tabBarAccessibilityLabel: StringsId.btnNavCategories,
+            headerLeft: () => (
+              <BackButton
+                testId={StringsId.btnBack}
+                accesibilityLabel={StringsId.btnBack}
+                onPress={() => console.log("Click!")}
+              />
+            ),
+          }}
+          component={CategoriesScreen}
+        />
+        <BottomTab.Screen
+          name="ShoppingCartScreen"
+          options={{
+            title: "Carrito",
+            tabBarTestID: StringsId.btnNavShoppingCart,
+            tabBarAccessibilityLabel: StringsId.btnNavShoppingCart,
+          }}
+          component={ShoppingCartScreen}
+        />
+        <BottomTab.Screen
+          name="ProfileNavigator"
+          options={{
+            title: "Perfil",
+            headerTitle: "Editar perfil",
+            tabBarTestID: StringsId.btnNavProfile,
+            tabBarAccessibilityLabel: StringsId.btnNavProfile,
+            headerLeft: () => (
+              <BackButton
+                testId={StringsId.btnBack}
+                accesibilityLabel={StringsId.btnBack}
+                onPress={() => console.log("Click!")}
+              />
+            ),
+          }}
+          component={ProfileNavigator}
+        />
+      </BottomTab.Navigator>
+    </View>
   );
 };

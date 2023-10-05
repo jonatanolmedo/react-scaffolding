@@ -1,6 +1,8 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { forwardRef } from "react";
 import {
   FlatList,
+  Image,
   StyleProp,
   StyleSheet,
   Text,
@@ -9,33 +11,68 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import MainNavigationParamsList from "../../../../example/navigators/MainNavigationParamsList";
 
 interface Props {
   titleHeader: string;
   dataList: ItemData[];
   styleList?: StyleProp<ViewStyle>;
+  icon?: any;
   textColor?: string;
+  navigation: StackNavigationProp<
+    MainNavigationParamsList,
+    "ProfileScreen",
+    undefined
+  >;
   onPress?: () => void;
+  testId?: string;
+  accesibilityLabel?: string;
 }
 
 const FlatListWithHeader: React.ForwardRefRenderFunction<
   TouchableOpacity,
   Props
-> = ({ titleHeader, dataList, styleList, onPress }, ref) => {
+> = (
+  {
+    titleHeader,
+    dataList,
+    styleList,
+    icon,
+    navigation,
+    onPress,
+    testId,
+    accesibilityLabel,
+  },
+  ref
+) => {
   return (
     <View style={styles.container}>
       <FlatList
         style={styleList}
         ListHeaderComponent={<Text style={styles.header}>{titleHeader}</Text>}
         data={dataList}
+        scrollEnabled={false}
         renderItem={({ item, index, separators }) => (
           <TouchableHighlight
             key={item.id}
-            onPress={() => console.log(item)}
+            testID={`${accesibilityLabel}${item.id}`}
+            accessibilityLabel={`${accesibilityLabel}${item.id}`}
+            onPress={() => {
+              item.navigateTo !== ""
+                ? navigation.navigate(item.navigateTo)
+                : console.log("Not implemented yet!");
+            }}
             onShowUnderlay={separators.highlight}
             onHideUnderlay={separators.unhighlight}
           >
             <View style={styles.itemContainer}>
+              {item.icon && (
+                <Image
+                  style={styles.icon}
+                  tintColor="black"
+                  source={item.icon}
+                />
+              )}
               <Text style={styles.itemText}>{item.title}</Text>
             </View>
           </TouchableHighlight>
@@ -51,6 +88,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
   },
   header: {
     backgroundColor: "#F6F6F6",
@@ -62,8 +100,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   itemContainer: {
+    flexDirection: "row",
+    verticalAlign: "middle",
     paddingHorizontal: 24,
     backgroundColor: "white",
+  },
+  icon: {
+    alignSelf: "center",
+    marginEnd: 8,
+    width: 20,
+    height: 20,
   },
   itemText: {
     paddingVertical: 8,

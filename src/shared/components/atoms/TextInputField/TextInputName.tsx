@@ -15,12 +15,11 @@ interface Props {
   keyboardType?: KeyboardTypeOptions | undefined;
   autoCapitalize?: "none" | "sentences" | "words" | "characters" | undefined;
   onChangeText?: ((text: string) => void) | undefined;
-  secureTextEntry?: boolean | undefined;
   testId: string;
   accesibilityLabel: string;
 }
 
-const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
+const TextInputName: React.ForwardRefRenderFunction<TextInput, Props> = (
   {
     style,
     value,
@@ -29,7 +28,6 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
     keyboardType,
     autoCapitalize,
     onChangeText,
-    secureTextEntry,
     testId,
     accesibilityLabel,
   },
@@ -38,6 +36,8 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
   return (
     <TextInput
       ref={ref}
+      testID={testId}
+      accessibilityLabel={accesibilityLabel}
       value={value}
       style={[styles.input, style]}
       placeholder={placeholder}
@@ -47,10 +47,6 @@ const TextInputPassword: React.ForwardRefRenderFunction<TextInput, Props> = (
       keyboardType={keyboardType}
       autoCapitalize={autoCapitalize}
       onChangeText={onChangeText}
-      secureTextEntry={secureTextEntry}
-      textContentType="oneTimeCode"
-      testID={testId}
-      accessibilityLabel={accesibilityLabel}
     />
   );
 };
@@ -74,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default forwardRef(TextInputPassword);
+export default forwardRef(TextInputName);

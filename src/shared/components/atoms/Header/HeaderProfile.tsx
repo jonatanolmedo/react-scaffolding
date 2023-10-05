@@ -1,10 +1,14 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
 import { Svg, Rect, Path } from "react-native-svg";
 
-const HeaderProfile: React.FC = () => {
+interface Props {
+  style?: StyleProp<ViewStyle>;
+}
+
+const HeaderProfile: React.FC<Props> = ({ style }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Svg style={styles.svg} height="171" viewBox="0 0 428 171" fill="none">
         <Rect width="100%" height="97.5488" fill="#27035F" />
         <Path
