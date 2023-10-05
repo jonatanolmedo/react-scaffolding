@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import CategoriesScreen from '../components/screens/CategoriesScreen/CategoriesScreen';
+import WelcomeScreen from '../components/screens/WelcomeScreen/WelcomeScreen';
 import { usePrintScreenName } from '../context/hooks/MyHook/usePrintScreenName';
 
 // Mocks para react-native-gesture-handler y @react-navigation/stack
@@ -60,12 +60,12 @@ describe('CategoriesScreen', () => {
     const route: any = {};  // Puedes ajustar las props de ruta según sea necesario
     const { getByText } = render(
       <NavigationContainer>
-        <CategoriesScreen navigation={navigation} route={route} />
+        <WelcomeScreen navigation={navigation} route={route} />
       </NavigationContainer>
     );
 
     // Para "Categories Screen"
-    expect(getByText(/Categories Screen.*/)).toBeDefined();
+    expect(getByText(/Has ingresado con éxito! Ahora estás listo para comenzar..*/)).toBeDefined();
 
   });
 });

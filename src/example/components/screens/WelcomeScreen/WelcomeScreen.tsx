@@ -18,7 +18,7 @@ const WelcomeScreen = ({ route, navigation }: Props) => {
   usePrintScreenName();
   const btnContinue = useRef(null);
   const params = route.params;
-  console.log("TAG_PARAMS", JSON.stringify(params, null, 2));
+//  console.log("TAG_PARAMS", JSON.stringify(params, null, 2));
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>

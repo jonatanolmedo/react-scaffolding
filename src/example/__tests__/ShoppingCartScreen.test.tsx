@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import CategoriesScreen from '../components/screens/CategoriesScreen/CategoriesScreen';
+import ShoppingCartScreen from '../components/screens/ShoppingCartScreen/ShoppingCartScreen';
 import { usePrintScreenName } from '../context/hooks/MyHook/usePrintScreenName';
 
 // Mocks para react-native-gesture-handler y @react-navigation/stack
@@ -60,12 +60,12 @@ describe('CategoriesScreen', () => {
     const route: any = {};  // Puedes ajustar las props de ruta según sea necesario
     const { getByText } = render(
       <NavigationContainer>
-        <CategoriesScreen navigation={navigation} route={route} />
+        <ShoppingCartScreen navigation={navigation} route={route} />
       </NavigationContainer>
     );
 
     // Para "Categories Screen"
-    expect(getByText(/Categories Screen.*/)).toBeDefined();
+    expect(getByText(/Shopping Cart Screen.*/)).toBeDefined();
 
   });
 });
