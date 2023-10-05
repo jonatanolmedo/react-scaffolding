@@ -19,29 +19,66 @@ export const ProfileNavigator = () => {
         <Stack.Screen
           name="ProfileScreen"
           component={ProfileScreen}
-          options={{
+          options={({ navigation }) => ({
+            headerShown: true,
+            headerStyle: {
+              elevation: 0,
+              shadowOpacity: 0,
+              backgroundColor: "#27035F",
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "#FFFFFF",
+            headerTitleStyle: {
+              marginEnd: 24,
+              fontSize: 16,
+              fontWeight: "bold",
+            },
+            headerLeftContainerStyle: {
+              marginStart: 24,
+            },
             title: "Perfil",
             headerTitle: "Editar perfil",
             headerLeft: () => (
               <BackButton
                 testId={StringsId.btnBack}
                 accesibilityLabel={StringsId.btnBack}
-                onPress={() => console.log("Click!")}
+                onPress={() => navigation.goBack()}
               />
             ),
-          }}
+          })}
         />
         <Stack.Screen
           name="EditProfileScreen"
           component={EditProfileScreen}
-          options={{
-            title: "Editar perfil",
-          }}
+          options={({ navigation }) => ({
+            headerShown: true,
+            headerStyle: {
+              elevation: 0,
+              shadowOpacity: 0,
+              backgroundColor: "#27035F",
+            },
+            headerTitleAlign: "center",
+            headerTintColor: "#FFFFFF",
+            headerTitleStyle: {
+              marginEnd: 24,
+              fontSize: 16,
+              fontWeight: "bold",
+            },
+            headerLeftContainerStyle: {
+              marginStart: 24,
+            },
+            title: "Perfil",
+            headerTitle: "Editar perfil",
+            headerLeft: () => (
+              <BackButton
+                testId={StringsId.btnBack}
+                accesibilityLabel={StringsId.btnBack}
+                onPress={() => navigation.navigate("ProfileScreen")}
+              />
+            ),
+          })}
         />
       </Stack.Navigator>
     </View>
   );
 };
-function getFocusedRouteNameFromRoute(route: any) {
-  throw new Error("Function not implemented.");
-}

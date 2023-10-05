@@ -27,6 +27,8 @@ interface Props {
   onPress?: () => void;
   testId?: string;
   accesibilityLabel?: string;
+  testIdList?: string;
+  accesibilityLabelList?: string;
 }
 
 const FlatListWithHeader: React.ForwardRefRenderFunction<
@@ -42,12 +44,16 @@ const FlatListWithHeader: React.ForwardRefRenderFunction<
     onPress,
     testId,
     accesibilityLabel,
+    testIdList,
+    accesibilityLabelList,
   },
   ref
 ) => {
   return (
     <View style={styles.container}>
       <FlatList
+        testID={testIdList}
+        accessibilityLabel={accesibilityLabelList}
         style={styleList}
         ListHeaderComponent={<Text style={styles.header}>{titleHeader}</Text>}
         data={dataList}
@@ -55,7 +61,7 @@ const FlatListWithHeader: React.ForwardRefRenderFunction<
         renderItem={({ item, index, separators }) => (
           <TouchableHighlight
             key={item.id}
-            testID={`${accesibilityLabel}${item.id}`}
+            testID={`${testId}${item.id}`}
             accessibilityLabel={`${accesibilityLabel}${item.id}`}
             onPress={() => {
               item.navigateTo !== ""

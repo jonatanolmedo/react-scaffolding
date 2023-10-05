@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#626262",
     borderRadius: 10,
+    color: "black",
   },
   placeholderColor: {
     color: "#626262",

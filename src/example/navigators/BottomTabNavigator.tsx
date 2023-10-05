@@ -7,6 +7,7 @@ import { Image, View } from "react-native";
 import BackButton from "../../shared/components/atoms/Buttons/BackButton";
 import StringsId from "../../constants/StringsId";
 import { ProfileNavigator } from "./ProfileNavigator";
+import React from "react";
 
 const BottomTab = createBottomTabNavigator<MainNavigationParamsList>();
 const HomeIcon = require("../../shared/assets/images/ic_home_outline.png");
@@ -18,7 +19,7 @@ export const BottomTabNavigator = () => {
   return (
     <View style={{ flex: 1 }}>
       <BottomTab.Navigator
-        initialRouteName="CategoriesScreen"
+        initialRouteName="HomeScreen"
         sceneContainerStyle={{
           backgroundColor: "white",
         }}
@@ -83,7 +84,7 @@ export const BottomTabNavigator = () => {
         />
         <BottomTab.Screen
           name="CategoriesScreen"
-          options={{
+          options={({ navigation }) => ({
             title: "Categorías",
             tabBarTestID: StringsId.btnNavCategories,
             tabBarAccessibilityLabel: StringsId.btnNavCategories,
@@ -91,10 +92,10 @@ export const BottomTabNavigator = () => {
               <BackButton
                 testId={StringsId.btnBack}
                 accesibilityLabel={StringsId.btnBack}
-                onPress={() => console.log("Click!")}
+                onPress={() => navigation.goBack()}
               />
             ),
-          }}
+          })}
           component={CategoriesScreen}
         />
         <BottomTab.Screen
@@ -109,17 +110,10 @@ export const BottomTabNavigator = () => {
         <BottomTab.Screen
           name="ProfileNavigator"
           options={{
-            title: "Perfil",
-            headerTitle: "Editar perfil",
+            headerShown: false,
+            tabBarLabel: "Perfil",
             tabBarTestID: StringsId.btnNavProfile,
             tabBarAccessibilityLabel: StringsId.btnNavProfile,
-            headerLeft: () => (
-              <BackButton
-                testId={StringsId.btnBack}
-                accesibilityLabel={StringsId.btnBack}
-                onPress={() => console.log("Click!")}
-              />
-            ),
           }}
           component={ProfileNavigator}
         />

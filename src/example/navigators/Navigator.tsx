@@ -5,6 +5,7 @@ import WelcomeScreen from "../components/screens/WelcomeScreen/WelcomeScreen";
 import HomeScreen from "../components/screens/HomeScreen/HomeScreen.screen";
 import LoginNavigationParamsList from "./LoginNavigationParamsList";
 import { BottomTabNavigator } from "./BottomTabNavigator";
+import React from "react";
 
 const Stack = createStackNavigator<LoginNavigationParamsList>();
 
@@ -17,7 +18,10 @@ export const Navigator = () => {
       >
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-        <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
+        <Stack.Screen
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
+        />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </View>

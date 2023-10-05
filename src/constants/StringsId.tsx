@@ -21,4 +21,6 @@ export default {
 
   // Lists:
   item: "item",
+  listProfile: "listProfile",
+  listSettings: "listSettings",
 };

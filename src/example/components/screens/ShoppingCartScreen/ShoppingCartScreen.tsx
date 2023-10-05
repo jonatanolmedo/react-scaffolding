@@ -4,13 +4,15 @@ import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreen
 import { SafeAreaView, Text } from "react-native";
 import MainNavigationParamsList from "../../../navigators/MainNavigationParamsList";
 import { useIsFocused } from "@react-navigation/native";
+import useExitBackButton from "../../../context/hooks/MyHook/useExitBackButton";
 
 interface Props
   extends StackScreenProps<MainNavigationParamsList, "ShoppingCartScreen"> {}
 
 const ShoppingCartScreen = ({ route, navigation }: Props) => {
+  useExitBackButton();
   const isFocused = useIsFocused();
-  isFocused ? usePrintScreenName() : ""
+  isFocused ? usePrintScreenName() : "";
 
   return (
     <SafeAreaView

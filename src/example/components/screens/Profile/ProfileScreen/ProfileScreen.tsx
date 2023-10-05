@@ -12,11 +12,13 @@ import {
 } from "../../../../../constants/Lists";
 import { ScrollView } from "react-native-gesture-handler";
 import StringsId from "../../../../../constants/StringsId";
+import useExitBackButton from "../../../../context/hooks/MyHook/useExitBackButton";
 
 interface Props
   extends StackScreenProps<MainNavigationParamsList, "ProfileScreen"> {}
 
 const ProfileScreen = ({ route, navigation }: Props) => {
+  useExitBackButton();
   const isFocused = useIsFocused();
   isFocused ? usePrintScreenName() : "";
 
@@ -34,6 +36,8 @@ const ProfileScreen = ({ route, navigation }: Props) => {
           dataList={ProfileItemList}
           titleHeader="Perfil"
           navigation={navigation}
+          testIdList={StringsId.listProfile}
+          accesibilityLabelList={StringsId.listProfile}
           testId={StringsId.item}
           accesibilityLabel={StringsId.item}
         />
@@ -42,6 +46,8 @@ const ProfileScreen = ({ route, navigation }: Props) => {
           dataList={SettingsItemList}
           titleHeader="Configuración"
           navigation={navigation}
+          testIdList={StringsId.listSettings}
+          accesibilityLabelList={StringsId.listSettings}
           testId={StringsId.item}
           accesibilityLabel={StringsId.item}
         />

@@ -10,11 +10,14 @@ import TextInputName from "../../../../../shared/components/atoms/TextInputField
 import LabelTitle from "../../../../../shared/components/atoms/Labels/LabelTitle";
 import Button from "../../../../../shared/components/atoms/Buttons/Button";
 import TextInputPassword from "../../../../../shared/components/atoms/TextInputField/TextInputPassword";
+import useExitBackButton from "../../../../context/hooks/MyHook/useExitBackButton";
+import TextInputEmail from "../../../../../shared/components/atoms/TextInputField/TextInputEmail";
 
 interface Props
   extends StackScreenProps<ProfileNavigationParamsList, "EditProfileScreen"> {}
 
 const EditProfileScreen = ({ route, navigation }: Props) => {
+  useExitBackButton();
   usePrintScreenName();
 
   const txtName = useRef(null);
@@ -87,7 +90,7 @@ const EditProfileScreen = ({ route, navigation }: Props) => {
             onChangeText={setInputPhone}
           />
           <LabelTitle style={styles.txtLabel} title="Email contacto" />
-          <TextInputName
+          <TextInputEmail
             ref={txtEmail}
             testId={StringsId.txtEmail}
             accesibilityLabel={StringsId.txtEmail}
