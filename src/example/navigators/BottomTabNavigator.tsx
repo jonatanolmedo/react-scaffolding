@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CategoriesScreen from "../components/screens/CategoriesScreen/CategoriesScreen";
 import MainNavigationParamsList from "./MainNavigationParamsList";
