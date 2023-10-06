@@ -1,4 +1,4 @@
-import dateFormatter from './dateFormatter';
+import dateFormatter from '../../shared/utils/dateFormatter/dateFormatter';
 
 describe('dateFormatter', () => {
   test('formats date correctly', () => {
