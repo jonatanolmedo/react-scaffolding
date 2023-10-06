@@ -20,7 +20,7 @@ interface Props {
   accesibilityLabel: string;
 }
 
-const TextInputEmail: React.ForwardRefRenderFunction<TextInput, Props> = (
+const TextInputName: React.ForwardRefRenderFunction<TextInput, Props> = (
   {
     style,
     value,
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default forwardRef(TextInputEmail);
+export default forwardRef(TextInputName);

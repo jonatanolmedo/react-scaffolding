@@ -8,11 +8,16 @@ import TextInputEmail from "../../../../shared/components/atoms/TextInputField/T
 import TextInputPassword from "../../../../shared/components/atoms/TextInputField/TextInputPassword";
 import BorderlessButton from "../../../../shared/components/atoms/Buttons/BorderlessButton";
 import BackgroundLogin from "../../../../shared/components/atoms/Background/BackgroundLogin";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import LoginNavigationParamsList from "../../../navigators/LoginNavigationParamsList";
 import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
 import StringsId from "../../../../constants/StringsId";
+import {
+  testCheckPasswordIncorrect,
+  testCheckUserNotRegistered,
+} from "../../../../shared/utils/testCaseLogin/testCaseLogin";
+import { validateEmail } from "../../../../shared/utils/regex/regexValidate";
 
 const LoginScreen = () => {
   usePrintScreenName();
@@ -28,16 +33,56 @@ const LoginScreen = () => {
   const [inputEmail, setInputEmail] = useState("");
   const { setPassword } = useMyContext();
   const [inputPassword, setInputPassword] = useState("");
-  // Estado para verificar si el usuario está autenticado o no
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [userExistsError, setUserExistsError] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Función para manejar el inicio de sesión
   useEffect(() => {
-    // Aquí va la lógica para autenticar al usuario
-    setIsAuthenticated(true); // Por ejemplo, establece isAuthenticated a true para simular un inicio de sesión exitoso
-  });
+    if (isAuthenticated) {
+      goToWelcomeScreen();
+    }
+  }, [isAuthenticated]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setIsAuthenticated(false);
+    }, [])
+  );
 
   const handleLogin = () => {
+    if (!testCheckUserNotRegistered(inputEmail) && inputPassword.length > 0) {
+      setUserExistsError(true);
+      return;
+    } else {
+      setUserExistsError(false);
+    }
+
+    if (!testCheckPasswordIncorrect(inputEmail, inputPassword)) {
+      setPasswordError(true);
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+    if (!validateEmail(inputEmail)) {
+      setEmailError(true);
+      return;
+    } else {
+      setEmailError(false);
+    }
+
+    if (inputPassword.length < 6) {
+      setPasswordError(true);
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+    if (!emailError && !passwordError) {
+      setIsAuthenticated(true);
+    }
+
     setEmail(inputEmail);
     setPassword(inputPassword);
   };
@@ -50,14 +95,34 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent} testID="loginScreen">
+    <ScrollView
+      contentContainerStyle={styles.scrollViewContent}
+      testID="loginScreen"
+    >
       <View style={styles.innerContainer}>
         <BackgroundLogin />
         <Header
           testId={StringsId.labelSubtitle}
           accesibilityLabel={StringsId.labelSubtitle}
           title="Pantalla de registro"
-          subtitle="Bienvenido de vuelta, por favor confirma tus datos"
+          subtitle={
+            emailError
+              ? "Datos incorrectos, tu email no coincide. Verifica tus datos y probemos otra vez."
+              : passwordError
+              ? "Ups, tu contraseña no coincide. Revisa tu información e intenta de nuevo."
+              : userExistsError
+              ? "El usuario no existe"
+              : "Bienvenido de vuelta, por favor confirma tus datos"
+          }
+          subtitleStyle={
+            emailError
+              ? styles.subtitleError
+              : passwordError
+              ? styles.subtitleError
+              : userExistsError
+              ? styles.subtitleError
+              : null
+          }
         />
         <TextInputEmail
           ref={txtEmail}
@@ -65,11 +130,15 @@ const LoginScreen = () => {
           accesibilityLabel={StringsId.txtEmail}
           value={inputEmail}
           style={styles.input}
+          error={emailError || userExistsError}
           placeholder="Email"
           autoCorrect={false}
           keyboardType="email-address"
           autoCapitalize="none"
-          onChangeText={setInputEmail}
+          onChangeText={(text) => {
+            setInputEmail(text);
+            setEmailError(false);
+          }}
         />
         <TextInputPassword
           ref={txtPassword}
@@ -78,7 +147,11 @@ const LoginScreen = () => {
           placeholder="Password"
           value={inputPassword}
           style={styles.input}
-          onChangeText={setInputPassword}
+          error={passwordError}
+          onChangeText={(text) => {
+            setInputPassword(text);
+            setPasswordError(false);
+          }}
           secureTextEntry={true}
         />
         <BorderlessButton
@@ -129,6 +202,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  subtitleError: {
+    textAlign: "center",
+    color: "#AC2777",
+    fontFamily: "Poppins",
+    fontSize: 18,
+    fontWeight: "700",
+  },
   input: {
     marginBottom: 24,
   },
@@ -151,7 +231,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
-
-export function testProps(id: string) {
-  return { testID: id, accessibilityLabel: id };
-}

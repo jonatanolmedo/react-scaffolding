@@ -8,11 +8,13 @@ import Header from "../../../../shared/components/atoms/Header/Header";
 import Button from "../../../../shared/components/atoms/Buttons/Button";
 import BackgroundWelcome from "../../../../shared/components/atoms/Background/BackgroundWelcome";
 import StringsId from "../../../../constants/StringsId";
+import useExitBackButton from "../../../context/hooks/MyHook/useExitBackButton";
 
 interface Props
   extends StackScreenProps<LoginNavigationParamsList, "WelcomeScreen"> {}
 
 const WelcomeScreen = ({ route, navigation }: Props) => {
+  useExitBackButton();
   usePrintScreenName();
   const btnContinue = useRef(null);
   const params = route.params;

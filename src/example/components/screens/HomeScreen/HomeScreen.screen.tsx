@@ -13,6 +13,7 @@ import MyContext from "../../../context/MyContext/MyContext";
 import useMyHook from "../../../context/hooks/MyHook/useMyHook";
 import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
 import { useIsFocused } from "@react-navigation/native";
+import useExitBackButton from "../../../context/hooks/MyHook/useExitBackButton";
 
 const HomeScreen: React.FC = () => {
   const { data, refreshData } = useMyHook(); // Invocamos el hook y obtenemos data y refreshData
@@ -22,8 +23,9 @@ const HomeScreen: React.FC = () => {
 
   const myContextData = useContext(MyContext);
 
+  useExitBackButton;
   const isFocused = useIsFocused();
-  isFocused ? usePrintScreenName() : ""
+  isFocused ? usePrintScreenName() : "";
 
   return (
     // Use ScrollView as the outer container
