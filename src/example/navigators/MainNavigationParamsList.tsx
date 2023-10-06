@@ -8,6 +8,7 @@ export type MainNavigationParamsList = {
   CategoriesScreen: undefined;
   ShoppingCartScreen: undefined;
   ProfileScreen: undefined;
+  ProfileNavigator: undefined;
 };
 
 export default MainNavigationParamsList;
