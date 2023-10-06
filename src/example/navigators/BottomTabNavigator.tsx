@@ -8,7 +8,6 @@ import { Image, View } from "react-native";
 import BackButton from "../../shared/components/atoms/Buttons/BackButton";
 import StringsId from "../../constants/StringsId";
 import { ProfileNavigator } from "./ProfileNavigator";
-import React from "react";
 
 const BottomTab = createBottomTabNavigator<MainNavigationParamsList>();
 const HomeIcon = require("../../shared/assets/images/ic_home_outline.png");
