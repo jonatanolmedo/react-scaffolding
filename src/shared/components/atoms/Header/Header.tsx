@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, StyleProp, ViewStyle } from "react-native";
+import { View, Text, StyleSheet, StyleProp, TextStyle } from "react-native";
 
 interface Props {
   title: string;
-  titleStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
   subtitle?: string;
-  subtitleStyle?: StyleProp<ViewStyle>;
+  subtitleStyle?: StyleProp<TextStyle>;
   testId?: string;
   accesibilityLabel?: string;
 }
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontFamily: "Poppins",
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: "700",
   },
 });
 
