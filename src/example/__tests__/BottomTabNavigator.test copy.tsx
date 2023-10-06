@@ -12,6 +12,34 @@ jest.mock('@react-navigation/elements/lib/commonjs/assets/back-icon.png', () => 
   jest.mock('@react-navigation/elements/lib/commonjs/assets/back-icon-mask.png', () => {
     return {};
   });
+
+  
+  jest.mock('react-native-gesture-handler', () => {
+    const View = require('react-native/Libraries/Components/View/View');
+    return {
+      Swipeable: View,
+      DrawerLayout: View,
+      State: {},
+      ScrollView: View,
+      Slider: View,
+      Switch: View,
+      TextInput: View,
+      ToolbarAndroid: View,
+      ViewPagerAndroid: View,
+      DrawerLayoutAndroid: View,
+      WebView: View,
+      NativeViewGestureHandler: View,
+      TapGestureHandler: View,
+      FlingGestureHandler: View,
+      ForceTouchGestureHandler: View,
+      LongPressGestureHandler: View,
+      PanGestureHandler: View,
+      PinchGestureHandler: View,
+      RotationGestureHandler: View,
+      /* and so on */
+      Directions: {},
+    };
+  });
   
   
 
