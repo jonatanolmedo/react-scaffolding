@@ -19,6 +19,16 @@ export default {
   btnNavShoppingCart: "btnNavShoppingCart",
   btnNavProfile: "btnNavProfile",
 
+  // Categories:
+  txtSearch: "txtSearch",
+  btnFilter: "btnFilter",
+  switchAll: "switchAll",
+  switchNew: "switchNew",
+  switchPreOwned: "switchPreOwned",
+  switchPrice: "switchPrice",
+  switchRelevance: "switchRelevance",
+  switchType: "switchType",
+
   // Lists:
   item: "item",
   listProfile: "listProfile",
