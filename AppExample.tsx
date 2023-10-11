@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import DomainNavigator from "./src/example/navigators/DomainNavigator"; // Importa el navigator que contiene la navegación de la aplicación
 import MyProvider from "./src/example/context/MyContext/MyProvider";
-import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import { KeyboardAvoidingView, Platform, StatusBar, StyleSheet } from "react-native";
 import { Navigator } from "./src/example/navigators/Navigator";
 
 // App principal
@@ -25,6 +25,13 @@ const App: React.FC = () => {
       <MyProvider>
         {/* Wrap NavigationContainer con el proveedor del contexto personalizado */}
         <NavigationContainer>
+        <StatusBar
+          animated={true}
+          backgroundColor="#27035F"
+          barStyle="default"
+          showHideTransition="none"
+          hidden={false}
+        />
           <KeyboardAvoidingView
             style={styles.container}
             behavior={Platform.OS === "ios" ? "padding" : undefined}

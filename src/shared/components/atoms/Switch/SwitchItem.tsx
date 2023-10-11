@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     transform: [{ scaleX: 1.4 }, { scaleY: 1.4 }],
   },
   text: {
-    marginStart: 24,
+    marginStart: 8,
     color: "black",
     fontFamily: "Poppins",
     fontSize: 16,

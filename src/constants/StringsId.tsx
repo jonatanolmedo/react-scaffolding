@@ -22,6 +22,8 @@ export default {
   // Categories:
   txtSearch: "txtSearch",
   btnFilter: "btnFilter",
+  btnApply: "btnApply",
+  btnCancel: "btnCancel",
   switchAll: "switchAll",
   switchNew: "switchNew",
   switchPreOwned: "switchPreOwned",
