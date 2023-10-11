@@ -48,9 +48,9 @@ export const SliderContainer = (props: {
   return (
     <View style={styles.sliderContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.text}>{caption}</Text>
+        {caption !== "" && <Text style={styles.text}>{caption}</Text>}
         <Text style={styles.text}>
-          {Array.isArray(value) ? "$" + value.join(".00 - $") + ".00": value}
+          {Array.isArray(value) ? "$" + value.join(".00           $") + ".00" : value}
         </Text>
       </View>
       {renderChildren()}
@@ -69,6 +69,10 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   text: {
+    width: "100%",
+    textAlign: "center",
+    fontFamily: "Poppins",
+    fontSize: 16,
     color: "black",
   },
   titleContainer: {

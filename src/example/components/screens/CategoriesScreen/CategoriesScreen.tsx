@@ -12,6 +12,7 @@ import LabelTitle from "../../../../shared/components/atoms/Labels/LabelTitle";
 import BorderlessButton from "../../../../shared/components/atoms/Buttons/BorderlessButton";
 import { Slider } from "@miblanchard/react-native-slider";
 import { SliderContainer } from "../../../../shared/components/atoms/Slider/SliderContainer";
+import RadioButtonItem from "../../../../shared/components/atoms/RadioButton/RadioButtonItem";
 
 interface Props
   extends StackScreenProps<MainNavigationParamsList, "CategoriesScreen"> {}
@@ -118,12 +119,13 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
                   maximumTrackTintColor="#F4F4F4"
                   maximumValue={100}
                   minimumTrackTintColor="#482291"
-                  minimumValue={1}
+                  minimumValue={0}
                   step={1}
                   thumbTintColor="#C4C4C4"
                 />
               </SliderContainer>
               <LabelTitle title="Color" style={styles.titleText} />
+              <RadioButtonItem />
               <View style={styles.containerButtons}>
                 <BorderlessButton
                   testId={StringsId.btnCancel}
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: "96%",
-    height: 400,
+    height: 450,
     backgroundColor: "white",
     shadowColor: "rgba(0, 0, 0, 0.9)",
     shadowOffset: { width: 0, height: 2 },
