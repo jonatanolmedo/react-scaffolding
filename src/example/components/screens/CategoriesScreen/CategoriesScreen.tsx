@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { usePrintScreenName } from "../../../context/hooks/MyHook/usePrintScreenName";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
 import MainNavigationParamsList from "../../../navigators/MainNavigationParamsList";
 import { useIsFocused } from "@react-navigation/native";
 import useExitBackButton from "../../../context/hooks/MyHook/useExitBackButton";
@@ -13,6 +19,8 @@ import BorderlessButton from "../../../../shared/components/atoms/Buttons/Border
 import { Slider } from "@miblanchard/react-native-slider";
 import { SliderContainer } from "../../../../shared/components/atoms/Slider/SliderContainer";
 import RadioButtonItem from "../../../../shared/components/atoms/RadioButton/RadioButtonItem";
+import ItemCard from "../../../../shared/components/atoms/Cards/ItemCard";
+import { ProductsList } from "../../../../constants/Lists";
 
 interface Props
   extends StackScreenProps<MainNavigationParamsList, "CategoriesScreen"> {}
@@ -40,6 +48,7 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
   useExitBackButton();
   const isFocused = useIsFocused();
   isFocused ? usePrintScreenName() : "";
+  const productsList = ProductsList;
 
   return (
     <SafeAreaView
@@ -60,6 +69,15 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
         onPressFilter={() => setShowCardContainer(!showCardContainer)}
       />
       <View style={styles.container}>
+        <FlatList
+          style={{ flex: 1, width: "100%", paddingBottom: 24 }}
+          columnWrapperStyle={{ justifyContent: "center" }}
+          data={productsList}
+          numColumns={2}
+          renderItem={({ item }) => {
+            return <ItemCard item={item} />;
+          }}
+        />
         {showCardContainer && (
           <View style={styles.cardContainer}>
             <View style={styles.card}>
@@ -159,6 +177,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   cardContainer: {
+    position: "absolute",
     width: "96%",
     height: 450,
     backgroundColor: "white",

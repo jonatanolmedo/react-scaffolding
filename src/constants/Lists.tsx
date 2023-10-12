@@ -130,3 +130,42 @@ export const ColorItemsList = [
     },
   },
 ];
+
+export const ProductsList = [
+  {
+    id: "Item1",
+    title: "Item 1",
+    description: "Descripción del Item 1",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item2",
+    title: "Item 2",
+    description: "Descripción del Item 2",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item3",
+    title: "Item 3",
+    description: "Descripción del Item 3",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item4",
+    title: "Item 4",
+    description: "Descripción del Item 4",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item5",
+    title: "Item 5",
+    description: "Descripción del Item 5",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item6",
+    title: "Item 6",
+    description: "Descripción del Item 6",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+];
