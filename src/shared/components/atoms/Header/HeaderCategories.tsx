@@ -45,7 +45,11 @@ const HeaderCategories: React.ForwardRefRenderFunction<TextInput, Props> = (
   ref
 ) => {
   return (
-    <View style={styles.header}>
+    <View
+      style={styles.header}
+      testID={testId}
+      accessibilityLabel={accesibilityLabel}
+    >
       <BackButton
         testId={StringsId.btnBack}
         accesibilityLabel={StringsId.btnBack}

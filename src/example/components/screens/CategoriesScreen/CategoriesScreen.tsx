@@ -75,7 +75,20 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
           data={productsList}
           numColumns={2}
           renderItem={({ item }) => {
-            return <ItemCard item={item} />;
+            return (
+              <ItemCard
+                item={item}
+                onPressFavorite={() =>
+                  console.log(`${item.title}: Click favorite button (♥︎)!`)
+                }
+                onPressMinus={() =>
+                  console.log(`${item.title}: Click minus button (-)!`)
+                }
+                onPressPlus={() =>
+                  console.log(`${item.title}: Click plus button (+)!`)
+                }
+              />
+            );
           }}
         />
         {showCardContainer && (

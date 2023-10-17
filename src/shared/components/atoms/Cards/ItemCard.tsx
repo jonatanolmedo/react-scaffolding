@@ -3,11 +3,19 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Props {
   item: any;
+  onPressPlus: () => void;
+  onPressMinus: () => void;
+  onPressFavorite: () => void;
 }
 const PlusIcon = require("../../../assets/images/ic_plus.png");
 const MinusIcon = require("../../../assets/images/ic_minus.png");
 
-const ItemCard: React.FC<Props> = ({ item }) => {
+const ItemCard: React.FC<Props> = ({
+  item,
+  onPressFavorite,
+  onPressMinus,
+  onPressPlus,
+}) => {
   return (
     <View
       testID={`card${item.id}`}
@@ -20,9 +28,9 @@ const ItemCard: React.FC<Props> = ({ item }) => {
           testID={`btnFavorite${item.id}`}
           accessibilityLabel={`btnFavorite${item.id}`}
           style={styles.icon}
-          onPress={() =>
-            console.log(`${item.title}: Click favorite button (♥︎)!`)
-          }
+          onPress={() => {
+            onPressFavorite();
+          }}
         >
           <Image source={item.imageSource} />
         </TouchableOpacity>
@@ -34,9 +42,9 @@ const ItemCard: React.FC<Props> = ({ item }) => {
             testID={`btnMinus${item.id}`}
             accessibilityLabel={`btnMinus${item.id}`}
             style={styles.button}
-            onPress={() =>
-              console.log(`${item.title}: Click minus button (-)!`)
-            }
+            onPress={() => {
+              onPressMinus();
+            }}
           >
             <Image source={MinusIcon} />
           </TouchableOpacity>
@@ -44,7 +52,9 @@ const ItemCard: React.FC<Props> = ({ item }) => {
             testID={`btnPlus${item.id}`}
             accessibilityLabel={`btnPlus${item.id}`}
             style={styles.button}
-            onPress={() => console.log(`${item.title}: Click plus button (+)!`)}
+            onPress={() => {
+              onPressPlus();
+            }}
           >
             <Image source={PlusIcon} />
           </TouchableOpacity>
