@@ -25,6 +25,11 @@ jest.mock('@react-navigation/elements/lib/commonjs/assets/back-icon-mask.png', (
   return {};
 });
 
+jest.mock("@miblanchard/react-native-slider", () => {
+  return {
+    Slider: () => {},
+  };
+});
 
 describe('App', () => {
   it('renders login screen when not authenticated', () => {

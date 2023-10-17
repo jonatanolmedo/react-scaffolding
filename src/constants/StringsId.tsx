@@ -20,6 +20,7 @@ export default {
   btnNavProfile: "btnNavProfile",
 
   // Categories:
+  flatListCategories: "flatListCategories",
   txtSearch: "txtSearch",
   btnFilter: "btnFilter",
   btnApply: "btnApply",

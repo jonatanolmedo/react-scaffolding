@@ -41,7 +41,11 @@ jest.mock('@react-navigation/elements/lib/commonjs/assets/back-icon.png', () => 
     };
   });
   
-  
+  jest.mock("@miblanchard/react-native-slider", () => {
+    return {
+      Slider: () => {},
+    };
+  });
 
 describe('BottomTabNavigator', () => {
   it('should render correctly', () => {

@@ -43,11 +43,11 @@ describe("HeaderCategories component", () => {
       />
     );
 
-    const backFilter = getByTestId(StringsId.btnFilter);
-    expect(backFilter).toBeDefined();
+    const filterBtn = getByTestId(StringsId.btnFilter);
+    expect(filterBtn).toBeDefined();
 
     // Simula un clic en el botón de filtrado:
-    fireEvent.press(backFilter);
+    fireEvent.press(filterBtn);
     expect(onPressFilterMock).toHaveBeenCalled();
   });
 

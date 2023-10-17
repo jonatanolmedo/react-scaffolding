@@ -1,13 +1,21 @@
 import React, { forwardRef, useMemo, useState } from "react";
-import { RadioGroup } from "react-native-radio-buttons-group";
+import { RadioButtonProps, RadioGroup } from "react-native-radio-buttons-group";
 import StringsId from "../../../../constants/StringsId";
 import { ColorItemsList } from "../../../../constants/Lists";
 
-interface Props {}
+interface Props {
+  selectedButtonId: string | undefined;
+  onSelectButton: (id: string | undefined) => void;
+}
 
-const RadioButtonItem: React.ForwardRefRenderFunction<Props> = ({}, ref) => {
-  const [selectedId, setSelectedId] = useState<string | undefined>();
+const RadioButtonItem: React.ForwardRefRenderFunction<
+  RadioButtonProps,
+  Props
+> = ({ selectedButtonId, onSelectButton }, ref) => {
   const radioButtons = useMemo(() => ColorItemsList, []);
+  const handleSelection = (selectedId: string | undefined) => {
+    onSelectButton(selectedId);
+  };
   return (
     <RadioGroup
       layout="row"
@@ -15,8 +23,8 @@ const RadioButtonItem: React.ForwardRefRenderFunction<Props> = ({}, ref) => {
       accessibilityLabel={StringsId.radioGroup}
       containerStyle={{ marginBottom: 10 }}
       radioButtons={radioButtons}
-      onPress={setSelectedId}
-      selectedId={selectedId}
+      onPress={handleSelection}
+      selectedId={selectedButtonId}
     />
   );
 };

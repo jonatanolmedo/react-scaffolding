@@ -54,7 +54,7 @@ jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn().mockReturnValue({ name: 'MockedRoute' }),
 }));
 
-describe('CategoriesScreen', () => {
+describe('ProfileScreen', () => {
   it('renders correctly', () => {
     const navigation: any = {};  // Puedes ajustar las props de navegación según sea necesario
     const route: any = {};  // Puedes ajustar las props de ruta según sea necesario

@@ -13,7 +13,6 @@ import { useIsFocused } from "@react-navigation/native";
 import useExitBackButton from "../../../context/hooks/MyHook/useExitBackButton";
 import SwitchItem from "../../../../shared/components/atoms/Switch/SwitchItem";
 import StringsId from "../../../../constants/StringsId";
-import HeaderCategories from "../../../../shared/components/atoms/Header/HeaderCategories";
 import LabelTitle from "../../../../shared/components/atoms/Labels/LabelTitle";
 import BorderlessButton from "../../../../shared/components/atoms/Buttons/BorderlessButton";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -21,6 +20,7 @@ import { SliderContainer } from "../../../../shared/components/atoms/Slider/Slid
 import RadioButtonItem from "../../../../shared/components/atoms/RadioButton/RadioButtonItem";
 import ItemCard from "../../../../shared/components/atoms/Cards/ItemCard";
 import { ProductsList } from "../../../../constants/Lists";
+import HeaderCategories from "../../../../shared/components/atoms/Header/HeaderCategories";
 
 interface Props
   extends StackScreenProps<MainNavigationParamsList, "CategoriesScreen"> {}
@@ -45,6 +45,12 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
   const toggleSwitchType = () =>
     setIsEnabledType((previousState) => !previousState);
   const [showCardContainer, setShowCardContainer] = useState(false);
+  const [selectedButtonId, setSelectedButtonId] = useState<
+    string | undefined
+  >();
+  const handleSelectButton = (id: string | undefined) => {
+    setSelectedButtonId(id);
+  };
   useExitBackButton();
   const isFocused = useIsFocused();
   isFocused ? usePrintScreenName() : "";
@@ -70,6 +76,7 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
       />
       <View style={styles.container}>
         <FlatList
+          testID={StringsId.flatListCategories}
           style={{ flex: 1, width: "100%", paddingBottom: 24 }}
           columnWrapperStyle={{ justifyContent: "center" }}
           data={productsList}
@@ -156,7 +163,10 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
                 />
               </SliderContainer>
               <LabelTitle title="Color" style={styles.titleText} />
-              <RadioButtonItem />
+              <RadioButtonItem
+                selectedButtonId={selectedButtonId}
+                onSelectButton={handleSelectButton}
+              />
               <View style={styles.containerButtons}>
                 <BorderlessButton
                   testId={StringsId.btnCancel}
