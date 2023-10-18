@@ -12,7 +12,7 @@ import {
 interface Props {
   style?: StyleProp<ViewStyle>;
   isEnabled?: boolean;
-  toggleSwitch?: ((value: boolean) => void | Promise<void>) | null | undefined;
+  toggleSwitch: ((value: boolean) => void | Promise<void>) | null | undefined;
   text?: string;
   testId: string;
   accesibilityLabel: string;

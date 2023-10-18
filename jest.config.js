@@ -17,5 +17,6 @@ module.exports = {
   ],
   testPathIgnorePatterns: [
     ".history", // From Visual Studio Code
+    "__mocks__",
   ], 
 };

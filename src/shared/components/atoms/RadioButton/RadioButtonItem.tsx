@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useState } from "react";
+import React, { forwardRef, useMemo } from "react";
 import { RadioButtonProps, RadioGroup } from "react-native-radio-buttons-group";
 import StringsId from "../../../../constants/StringsId";
 import { ColorItemsList } from "../../../../constants/Lists";
