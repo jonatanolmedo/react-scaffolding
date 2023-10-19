@@ -69,3 +69,27 @@ describe('HomeScreen', () => {
 
   });
 });
+
+// Mock de useIsFocused para que devuelva true
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useIsFocused: jest.fn().mockReturnValue(true),
+}));
+
+
+describe('HomeScreen', () => {
+  it('renders correctly', () => {
+    const { getByText } = render(
+      <NavigationContainer>
+        <HomeScreen />
+      </NavigationContainer>
+    );
+
+    // Para "Welcome,"
+    expect(getByText(/Welcome,.*/)).toBeDefined();
+    // Para "Today's Date:"
+    expect(getByText(/Today's Date:/)).toBeDefined();
+
+  });
+});
+

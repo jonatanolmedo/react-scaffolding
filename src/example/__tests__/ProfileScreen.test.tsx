@@ -54,7 +54,7 @@ jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn().mockReturnValue({ name: 'MockedRoute' }),
 }));
 
-describe('CategoriesScreen', () => {
+describe('ProfileScreen', () => {
   it('renders correctly', () => {
     const navigation: any = {};  // Puedes ajustar las props de navegación según sea necesario
     const route: any = {};  // Puedes ajustar las props de ruta según sea necesario
@@ -71,3 +71,29 @@ describe('CategoriesScreen', () => {
 
   });
 });
+
+// Mock de useIsFocused para que devuelva true
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useIsFocused: jest.fn().mockReturnValue(true),
+}));
+
+
+describe('ProfileScreen', () => {
+  it('renders correctly when isFocused is true', () => {
+    const navigation: any = {};  // Puedes ajustar las props de navegación según sea necesario
+    const route: any = {};  // Puedes ajustar las props de ruta según sea necesario
+    const { queryAllByText } = render(
+      <NavigationContainer>
+        <ProfileScreen navigation={navigation} route={route} />
+      </NavigationContainer>
+    );
+
+    // Para "ProfileScreen"
+    const perfilElements = queryAllByText(/Perfil.*/);
+    expect(perfilElements.length).toBeGreaterThan(0);
+    
+
+  });
+});
+

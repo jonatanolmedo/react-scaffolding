@@ -1,8 +1,9 @@
 // BottomTabNavigator.test.tsx
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render, fireEvent } from '@testing-library/react-native';
 import { ProfileNavigator } from '../navigators/ProfileNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import StringsId from "../../constants/StringsId";
 
 
 // Mock para la imagen que está dando error
@@ -56,21 +57,28 @@ describe('ProfileNavigator', () => {
     expect(getByTestId('itemprofile1')).toBeDefined();
     expect(getByTestId('itemprofile2')).toBeDefined();
     expect(getByTestId('itemprofile3')).toBeDefined();
+    expect(getByTestId(StringsId.btnBack)).toBeDefined();
+
+    const backButton = getByTestId(StringsId.btnBack);
+    fireEvent.press(backButton);
+
   });
 
-  it('should navigate to HomeScreen', () => {
-    // You can simulate navigation and test if it goes to HomeScreen as expected
+  describe('Profile Menu Buttons', () => {
+    it('debe contar la cantidad de elementos con data-testid', () => {
+      const { queryAllByTestId } = render(
+        <NavigationContainer>
+          <ProfileNavigator />
+        </NavigationContainer>
+      );
+  
+      // Utiliza queryAllByTestId con el valor que deseas contar
+      const elementsWithTestId = queryAllByTestId(StringsId.btnBack);
+  
+      // Verifica la cantidad de elementos
+      expect(elementsWithTestId.length).toBe(1); // Ajusta este número según tus expectativas
+    });
   });
-
-  it('should navigate to CategoriesScreen', () => {
-    // You can simulate navigation and test if it goes to CategoriesScreen as expected
-  });
-
-  it('should navigate to ShoppingCartScreen', () => {
-    // You can simulate navigation and test if it goes to ShoppingCartScreen as expected
-  });
-
-  it('should navigate to ProfileScreen', () => {
-    // You can simulate navigation and test if it goes to ProfileScreen as expected
-  });
+  
+  
 });

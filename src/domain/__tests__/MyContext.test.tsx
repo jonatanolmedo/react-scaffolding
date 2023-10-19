@@ -32,4 +32,10 @@ describe('MyContext', () => {
     fireEvent.press(buttonElement);
     expect(nameElement.props.children).toBe('John');
   });
+
+  it('throws an error when used outside MyProvider', () => {
+    // Renderiza MockComponent directamente sin MyProvider
+    expect(() => render(<MockComponent />)).toThrow('useMyContext must be used within a MyProvider');
+  });
+
 });

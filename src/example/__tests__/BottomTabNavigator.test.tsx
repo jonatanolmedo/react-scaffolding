@@ -1,8 +1,9 @@
 // BottomTabNavigator.test.tsx
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { render , fireEvent } from '@testing-library/react-native';
 import { BottomTabNavigator } from '../navigators/BottomTabNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import StringsId from "../../constants/StringsId";
 
 
 // Mock para la imagen que está dando error
@@ -58,19 +59,17 @@ describe('BottomTabNavigator', () => {
     expect(getByTestId('btnNavProfile')).toBeDefined();
   });
 
-  it('should navigate to HomeScreen', () => {
-    // You can simulate navigation and test if it goes to HomeScreen as expected
-  });
+});
 
+describe('BottomTabNavigator', () => {
   it('should navigate to CategoriesScreen', () => {
-    // You can simulate navigation and test if it goes to CategoriesScreen as expected
-  });
+    const { getByTestId, getByText } = render(
+      <NavigationContainer>
+        <BottomTabNavigator />
+      </NavigationContainer>
+    );
 
-  it('should navigate to ShoppingCartScreen', () => {
-    // You can simulate navigation and test if it goes to ShoppingCartScreen as expected
-  });
-
-  it('should navigate to ProfileScreen', () => {
-    // You can simulate navigation and test if it goes to ProfileScreen as expected
+    // Encuentra y presiona el botón de Categorías (que incluye el BackButton)
+    expect(getByTestId('btnNavCategories')).toBeDefined();
   });
 });

@@ -54,7 +54,29 @@ jest.mock('@react-navigation/native', () => ({
   useRoute: jest.fn().mockReturnValue({ name: 'MockedRoute' }),
 }));
 
-describe('CategoriesScreen', () => {
+describe('WelcomeScreen', () => {
+  it('renders correctly', () => {
+    const navigation: any = {};  // Puedes ajustar las props de navegación según sea necesario
+    const route: any = {};  // Puedes ajustar las props de ruta según sea necesario
+    const { getByText } = render(
+      <NavigationContainer>
+        <WelcomeScreen navigation={navigation} route={route} />
+      </NavigationContainer>
+    );
+
+    // Para "Categories Screen"
+    expect(getByText(/Has ingresado con éxito! Ahora estás listo para comenzar..*/)).toBeDefined();
+
+  });
+});
+
+// Mock de useIsFocused para que devuelva true
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useIsFocused: jest.fn().mockReturnValue(true),
+}));
+
+describe('WelcomeScreen', () => {
   it('renders correctly', () => {
     const navigation: any = {};  // Puedes ajustar las props de navegación según sea necesario
     const route: any = {};  // Puedes ajustar las props de ruta según sea necesario

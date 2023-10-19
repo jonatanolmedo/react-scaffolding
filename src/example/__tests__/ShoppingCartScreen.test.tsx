@@ -69,3 +69,24 @@ describe('CategoriesScreen', () => {
 
   });
 });
+
+// Mock de useIsFocused para que devuelva true
+jest.mock('@react-navigation/native', () => ({
+  ...jest.requireActual('@react-navigation/native'),
+  useIsFocused: jest.fn().mockReturnValue(true),
+}));
+
+describe('ShoppingCartScreen', () => {
+  it('renders correctly when isFocused is true', () => {
+    const navigation: any = {};
+    const route: any = {};
+    const { getByText } = render(
+      <ShoppingCartScreen navigation={navigation} route={route} />
+    );
+
+    // Asegúrate de que el componente se comporte como se espera cuando isFocused es true
+    expect(getByText('Shopping Cart Screen')).toBeDefined();
+
+    // Agrega más comprobaciones según sea necesario
+  });
+});
