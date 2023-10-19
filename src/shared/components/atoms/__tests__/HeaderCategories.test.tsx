@@ -7,11 +7,11 @@ describe("HeaderCategories component", () => {
   test("renders correctly", () => {
     const { getByTestId } = render(
       <HeaderCategories
-        testId="test-id"
+        testId={StringsId.headerCategories}
         accesibilityLabel="accessibility-label"
       />
     );
-    const container = getByTestId("test-id");
+    const container = getByTestId(StringsId.headerCategories);
     expect(container).toBeDefined();
   });
 
@@ -19,7 +19,7 @@ describe("HeaderCategories component", () => {
     const onPressBackMock = jest.fn();
     const { getByTestId } = render(
       <HeaderCategories
-        testId="test-id"
+        testId={StringsId.headerCategories}
         accesibilityLabel="accessibility-label"
         onPressBack={onPressBackMock}
       />
@@ -37,7 +37,7 @@ describe("HeaderCategories component", () => {
     const onPressFilterMock = jest.fn();
     const { getByTestId } = render(
       <HeaderCategories
-        testId="test-id"
+        testId={StringsId.headerCategories}
         accesibilityLabel="accessibility-label"
         onPressFilter={onPressFilterMock}
       />
@@ -55,7 +55,7 @@ describe("HeaderCategories component", () => {
     const onChangeTextMock = jest.fn();
     const { getByTestId } = render(
       <HeaderCategories
-        testId="test-id"
+        testId={StringsId.headerCategories}
         accesibilityLabel="accessibility-label"
         onChangeText={onChangeTextMock}
       />

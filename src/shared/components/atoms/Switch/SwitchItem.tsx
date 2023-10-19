@@ -12,7 +12,7 @@ import {
 interface Props {
   style?: StyleProp<ViewStyle>;
   isEnabled?: boolean;
-  toggleSwitch: ((value: boolean) => void | Promise<void>) | null | undefined;
+  toggleSwitch: (value: boolean) => void | Promise<void>;
   text?: string;
   testId: string;
   accesibilityLabel: string;
@@ -32,7 +32,9 @@ const SwitchItem: React.ForwardRefRenderFunction<Switch, Props> = (
         trackColor={{ false: "#C4C4C4", true: "#F4F4F4" }}
         thumbColor={isEnabled ? "#482291" : "#FFFFFF"}
         ios_backgroundColor="#C4C4C4"
-        onValueChange={toggleSwitch}
+        onValueChange={(value) => {
+          toggleSwitch(value);
+        }}
         value={isEnabled}
       />
       <Text style={styles.text}>{text}</Text>

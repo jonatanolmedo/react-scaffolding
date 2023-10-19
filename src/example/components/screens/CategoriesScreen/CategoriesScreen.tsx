@@ -71,6 +71,7 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
         hidden={false}
       />
       <HeaderCategories
+        testId={StringsId.headerCategories}
         onPressBack={() => navigation.goBack()}
         onPressFilter={() => setShowCardContainer(!showCardContainer)}
       />
@@ -99,7 +100,7 @@ const CategoriesScreen = ({ route, navigation }: Props) => {
           }}
         />
         {showCardContainer && (
-          <View style={styles.cardContainer}>
+          <View testID="card-container" style={styles.cardContainer}>
             <View style={styles.card}>
               <LabelTitle title="Filtro" style={styles.titleText} />
               <View style={{ flex: 1, flexDirection: "row" }}>

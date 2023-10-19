@@ -12,10 +12,8 @@ export const SliderContainer = (props: {
   vertical?: boolean;
 }) => {
   const { caption, sliderValue, trackMarks } = props;
-  const [value, setValue] = React.useState(
-    sliderValue ? sliderValue : DEFAULT_VALUE
-  );
-  let renderTrackMarkComponent: React.ReactNode;
+  const [value, setValue] = React.useState(sliderValue ?? DEFAULT_VALUE);
+  let renderTrackMarkComponent: any;
 
   if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
     renderTrackMarkComponent = (index: number) => {
@@ -26,7 +24,7 @@ export const SliderContainer = (props: {
         currentMarkValue > Math.max(currentSliderValue)
           ? trackMarkStyles.activeMark
           : trackMarkStyles.inactiveMark;
-      return <View style={style} />;
+      return <View testID={`track-mark-${index}`} style={style} />;
     };
   }
 
@@ -49,8 +47,10 @@ export const SliderContainer = (props: {
     <View style={styles.sliderContainer}>
       <View style={styles.titleContainer}>
         {caption !== "" && <Text style={styles.text}>{caption}</Text>}
-        <Text style={styles.text}>
-          {Array.isArray(value) ? "$" + value.join(".00           $") + ".00" : value}
+        <Text testID="slider-container" style={styles.text}>
+          {Array.isArray(value)
+            ? "$" + value.join(".00           $") + ".00"
+            : value}
         </Text>
       </View>
       {renderChildren()}
