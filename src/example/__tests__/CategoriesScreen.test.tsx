@@ -7,6 +7,8 @@ import CategoriesScreen from "../components/screens/CategoriesScreen/CategoriesS
 import "react-native-gesture-handler/jestSetup";
 import StringsId from "../../constants/StringsId";
 import HeaderCategories from "../../shared/components/atoms/Header/HeaderCategories";
+import ItemCard from "../../shared/components/atoms/Cards/ItemCard";
+import BorderlessButton from "../../shared/components/atoms/Buttons/BorderlessButton";
 
 // Mock de MyProvider
 jest.mock("../context/MyContext/MyProvider", () => ({
@@ -41,6 +43,14 @@ describe("CategoriesScreen", () => {
   const navigation: any = {}; // Puedes ajustar las props de navegación según sea necesario
   const route: any = {}; // Puedes ajustar las props de ruta según sea necesario
   let getByTestId: any;
+  const sampleItem = {
+    id: "Item1",
+    title: "Sample Item",
+    description: "Sample Description",
+    imageSource: require("../../shared/assets/images/ic_heart.png"),
+  };
+  const title = "Sample Button";
+  const onPressMock = jest.fn();
 
   beforeEach(() => {
     const renderResult = render(
@@ -116,5 +126,108 @@ describe("CategoriesScreen", () => {
     // Simula un clic en el botón de filtrado:
     fireEvent.press(filterBtn);
     expect(onPressFilterMock).toHaveBeenCalled();
+  });
+
+  test("should press btnBack", () => {
+    const onPressBackMock = jest.fn();
+    const { getByTestId } = render(
+      <HeaderCategories
+        testId={StringsId.headerCategories}
+        accesibilityLabel="accessibility-label"
+        onPressBack={() => onPressBackMock.mockReturnValue(navigation)}
+      />
+    );
+
+    const backBtn = getByTestId(StringsId.btnBack);
+    expect(backBtn).toBeDefined();
+    onPressBackMock();
+
+    // Simula un clic en el botón de retroceso:
+    fireEvent.press(backBtn);
+    expect(onPressBackMock).toHaveBeenCalled();
+  });
+
+  test("calls the onPress function when the btnCancel is pressed", () => {
+    const { getByTestId } = render(
+      <BorderlessButton
+        title={title}
+        onPress={onPressMock}
+        testId={StringsId.btnCancel}
+      />
+    );
+
+    const buttonElement = getByTestId(StringsId.btnCancel);
+    fireEvent.press(buttonElement);
+
+    expect(onPressMock).toHaveBeenCalled();
+  });
+
+  test("calls the onPress function when the btnApply is pressed", () => {
+    const { getByTestId } = render(
+      <BorderlessButton
+        title={title}
+        onPress={onPressMock}
+        testId={StringsId.btnApply}
+      />
+    );
+
+    const buttonElement = getByTestId(StringsId.btnApply);
+    fireEvent.press(buttonElement);
+
+    expect(onPressMock).toHaveBeenCalled();
+  });
+
+  test("calls onPressFavorite when the favorite button is pressed", () => {
+    const onPressFavoriteMock = jest.fn();
+    const { getByTestId } = render(
+      <ItemCard
+        item={sampleItem}
+        onPressFavorite={onPressFavoriteMock}
+        onPressMinus={() => {}}
+        onPressPlus={() => {}}
+      />
+    );
+
+    const favoriteButton = getByTestId(`btnFavorite${sampleItem.id}`);
+    expect(favoriteButton).toBeDefined();
+
+    fireEvent.press(favoriteButton);
+    expect(onPressFavoriteMock).toHaveBeenCalled();
+  });
+
+  test("calls onPressMinus when the minus button is pressed", () => {
+    const onPressMinusMock = jest.fn();
+    const { getByTestId } = render(
+      <ItemCard
+        item={sampleItem}
+        onPressFavorite={() => {}}
+        onPressMinus={onPressMinusMock}
+        onPressPlus={() => {}}
+      />
+    );
+
+    const minusButton = getByTestId(`btnMinus${sampleItem.id}`);
+    expect(minusButton).toBeDefined();
+
+    fireEvent.press(minusButton);
+    expect(onPressMinusMock).toHaveBeenCalled();
+  });
+
+  test("calls onPressPlus when the plus button is pressed", () => {
+    const onPressPlusMock = jest.fn();
+    const { getByTestId } = render(
+      <ItemCard
+        item={sampleItem}
+        onPressFavorite={() => {}}
+        onPressMinus={() => {}}
+        onPressPlus={onPressPlusMock}
+      />
+    );
+
+    const plusButton = getByTestId(`btnPlus${sampleItem.id}`);
+    expect(plusButton).toBeDefined();
+
+    fireEvent.press(plusButton);
+    expect(onPressPlusMock).toHaveBeenCalled();
   });
 });

@@ -9,7 +9,6 @@ export const SliderContainer = (props: {
   children: React.ReactElement;
   sliderValue?: Array<number>;
   trackMarks?: Array<number>;
-  vertical?: boolean;
 }) => {
   const { caption, sliderValue, trackMarks } = props;
   const [value, setValue] = React.useState(sliderValue ?? DEFAULT_VALUE);
@@ -79,7 +78,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  vertical: {},
 });
 
 const borderWidth = 4;

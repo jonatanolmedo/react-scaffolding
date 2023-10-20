@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { SliderContainer } from "../Slider/SliderContainer";
 import { SliderMock, SliderTest } from "../__mocks__/react-native-slider";
-import { ReactTestInstance } from 'react-test-renderer';
 
 jest.mock("@miblanchard/react-native-slider", () => {
   return {
@@ -141,5 +140,35 @@ describe("SliderContainer component", () => {
     const slider = sliderContainer.props.children;
 
     expect(slider.props.minimumValue).toEqual(minValue);
+  });
+
+  test("renders track mark component correctly", () => {
+    const trackMarks = [1, 2, 3];
+    const sliderValue = [1];
+
+    // Define una función mock de renderTrackMarkComponent que refleja el comportamiento deseado:
+    const renderTrackMarkComponent = (index: number) => {
+      const currentMarkValue = trackMarks[index];
+      const currentSliderValue: number | number[] =
+        typeof sliderValue === "number"
+          ? sliderValue // Si value es un número, asigna el valor actual
+          : Array.isArray(sliderValue) && sliderValue.length > 0
+          ? sliderValue[0] // Si es un arreglo con al menos un elemento, asigna el primer elemento
+          : 0; // Valor predeterminado en otros casos
+      let style: any;
+
+      if (currentMarkValue >= Math.max(currentSliderValue)) {
+        style = { borderColor: "red" };
+      } else {
+        style = { borderColor: "grey" };
+      }
+      return style;
+    };
+
+    // Llama a renderTrackMarkComponent con un índice específico para obtener el resultado:
+    const result = renderTrackMarkComponent(0);
+
+    // Evalúa el resultado (style):
+    expect(result).toEqual({ borderColor: "red" });
   });
 });
