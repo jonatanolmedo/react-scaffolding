@@ -13,6 +13,7 @@ describe("ItemCard component", () => {
   test("renders correctly", () => {
     const { getByTestId } = render(
       <ItemCard
+        testId="itemCard"
         item={sampleItem}
         onPressFavorite={() => {}}
         onPressMinus={() => {}}
@@ -20,7 +21,7 @@ describe("ItemCard component", () => {
       />
     );
 
-    const card = getByTestId(`card${sampleItem.id}`);
+    const card = getByTestId("itemCard");
     expect(card).toBeDefined();
   });
 

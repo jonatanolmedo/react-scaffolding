@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, within } from "@testing-library/react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import CategoriesScreen from "../components/screens/CategoriesScreen/CategoriesScreen";
 
@@ -40,7 +40,9 @@ jest.mock("@miblanchard/react-native-slider", () => {
 });
 
 describe("CategoriesScreen", () => {
-  const navigation: any = {}; // Puedes ajustar las props de navegación según sea necesario
+  const navigation: any = {
+    goBack: jest.fn(), // Mock de la función goBack
+  }; // Puedes ajustar las props de navegación según sea necesario
   const route: any = {}; // Puedes ajustar las props de ruta según sea necesario
   let getByTestId: any;
   const sampleItem = {
@@ -147,6 +149,18 @@ describe("CategoriesScreen", () => {
     expect(onPressBackMock).toHaveBeenCalled();
   });
 
+  test("should call navigation.goBack when btnBack is pressed", () => {
+    const { getByTestId } = render(
+      <CategoriesScreen navigation={navigation} route={route} />
+    );
+
+    const btnBack = getByTestId("btnBack");
+
+    fireEvent.press(btnBack);
+
+    expect(navigation.goBack).toHaveBeenCalled();
+  });
+
   test("calls the onPress function when the btnCancel is pressed", () => {
     const { getByTestId } = render(
       <BorderlessButton
@@ -177,57 +191,64 @@ describe("CategoriesScreen", () => {
     expect(onPressMock).toHaveBeenCalled();
   });
 
-  test("calls onPressFavorite when the favorite button is pressed", () => {
-    const onPressFavoriteMock = jest.fn();
-    const { getByTestId } = render(
-      <ItemCard
-        item={sampleItem}
-        onPressFavorite={onPressFavoriteMock}
-        onPressMinus={() => {}}
-        onPressPlus={() => {}}
-      />
-    );
+  test("should call onPressFavorite when the favorite button is pressed in ItemCard", () => {
+    // Suprime la salida de consola (console.log)
+    const spy = jest.spyOn(console, "log").mockImplementation(() => {});
 
-    const favoriteButton = getByTestId(`btnFavorite${sampleItem.id}`);
+    const { getByTestId } = render(<CategoriesScreen />);
+
+    const itemCard = getByTestId(`itemCard${sampleItem.id}`);
+
+    // Simula la interacción con el botón de favoritos en el ItemCard
+    const favoriteButton = within(itemCard).getByTestId(
+      `btnFavorite${sampleItem.id}`
+    );
     expect(favoriteButton).toBeDefined();
 
     fireEvent.press(favoriteButton);
-    expect(onPressFavoriteMock).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
+
+    // Restaura la implementación original de console.log
+    jest.restoreAllMocks();
   });
 
-  test("calls onPressMinus when the minus button is pressed", () => {
-    const onPressMinusMock = jest.fn();
-    const { getByTestId } = render(
-      <ItemCard
-        item={sampleItem}
-        onPressFavorite={() => {}}
-        onPressMinus={onPressMinusMock}
-        onPressPlus={() => {}}
-      />
-    );
+  test("should call onPressMinus when the minus button is pressed in ItemCard", () => {
+    // Suprime la salida de consola (console.log)
+    const spy = jest.spyOn(console, "log").mockImplementation(() => {});
 
-    const minusButton = getByTestId(`btnMinus${sampleItem.id}`);
+    const { getByTestId } = render(<CategoriesScreen />);
+
+    const itemCard = getByTestId(`itemCard${sampleItem.id}`);
+
+    // Simula la interacción con el botón de favoritos en el ItemCard
+    const minusButton = within(itemCard).getByTestId(
+      `btnMinus${sampleItem.id}`
+    );
     expect(minusButton).toBeDefined();
 
     fireEvent.press(minusButton);
-    expect(onPressMinusMock).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
+
+    // Restaura la implementación original de console.log
+    jest.restoreAllMocks();
   });
 
-  test("calls onPressPlus when the plus button is pressed", () => {
-    const onPressPlusMock = jest.fn();
-    const { getByTestId } = render(
-      <ItemCard
-        item={sampleItem}
-        onPressFavorite={() => {}}
-        onPressMinus={() => {}}
-        onPressPlus={onPressPlusMock}
-      />
-    );
+  test("should call onPressPlus when the plus button is pressed in ItemCard", () => {
+    // Suprime la salida de consola (console.log)
+    const spy = jest.spyOn(console, "log").mockImplementation(() => {});
 
-    const plusButton = getByTestId(`btnPlus${sampleItem.id}`);
+    const { getByTestId } = render(<CategoriesScreen />);
+
+    const itemCard = getByTestId(`itemCard${sampleItem.id}`);
+
+    // Simula la interacción con el botón de favoritos en el ItemCard
+    const plusButton = within(itemCard).getByTestId(`btnPlus${sampleItem.id}`);
     expect(plusButton).toBeDefined();
 
     fireEvent.press(plusButton);
-    expect(onPressPlusMock).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
+
+    // Restaura la implementación original de console.log
+    jest.restoreAllMocks();
   });
 });

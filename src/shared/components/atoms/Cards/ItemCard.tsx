@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Props {
   item: any;
+  testId?: string;
   onPressPlus: () => void;
   onPressMinus: () => void;
   onPressFavorite: () => void;
@@ -12,14 +13,15 @@ const MinusIcon = require("../../../assets/images/ic_minus.png");
 
 const ItemCard: React.FC<Props> = ({
   item,
+  testId,
   onPressFavorite,
   onPressMinus,
   onPressPlus,
 }) => {
   return (
     <View
-      testID={`card${item.id}`}
-      accessibilityLabel={`card${item.id}`}
+      testID={`${testId}`}
+      accessibilityLabel={`${testId}`}
       style={styles.cardContainer}
     >
       <View style={styles.card}>
