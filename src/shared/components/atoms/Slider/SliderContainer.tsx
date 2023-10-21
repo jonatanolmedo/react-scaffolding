@@ -1,6 +1,9 @@
-import { Slider } from "@miblanchard/react-native-slider";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import {
+  renderChildren,
+  renderTrackMarkComponent,
+} from "../../../utils/sliderUtils/sliderUtils";
 
 const DEFAULT_VALUE = 0.2;
 
@@ -12,35 +15,21 @@ export const SliderContainer = (props: {
 }) => {
   const { caption, sliderValue, trackMarks } = props;
   const [value, setValue] = React.useState(sliderValue ?? DEFAULT_VALUE);
-  let renderTrackMarkComponent: any;
+  let _renderTrackMarkComponent: any = () => {}; // Función vacía predeterminada
 
   if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
-    renderTrackMarkComponent = (index: number) => {
-      const currentMarkValue = trackMarks[index];
-      const currentSliderValue =
-        value || (Array.isArray(value) && value[0]) || 0;
-      const style =
-        currentMarkValue > Math.max(currentSliderValue)
-          ? trackMarkStyles.activeMark
-          : trackMarkStyles.inactiveMark;
-      return <View testID={`track-mark-${index}`} style={style} />;
-    };
+    _renderTrackMarkComponent = (index: number) =>
+      renderTrackMarkComponent(trackMarks, value, index);
   }
 
-  const renderChildren = () => {
-    return React.Children.map(props.children, (child: React.ReactElement) => {
-      if (!!child && child.type === Slider) {
-        return React.cloneElement(child, {
-          onValueChange: setValue,
-          renderTrackMarkComponent,
-          trackMarks,
-          value,
-        });
-      }
-
-      return child;
-    });
-  };
+  const _renderChildren = () =>
+    renderChildren(
+      props.children,
+      setValue,
+      _renderTrackMarkComponent,
+      trackMarks,
+      value
+    );
 
   return (
     <View style={styles.sliderContainer}>
@@ -52,7 +41,7 @@ export const SliderContainer = (props: {
             : value}
         </Text>
       </View>
-      {renderChildren()}
+      {_renderChildren()}
     </View>
   );
 };
@@ -77,19 +66,5 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignItems: "center",
     justifyContent: "center",
-  },
-});
-
-const borderWidth = 4;
-const trackMarkStyles = StyleSheet.create({
-  activeMark: {
-    borderColor: "red",
-    borderWidth,
-    left: -borderWidth / 2,
-  },
-  inactiveMark: {
-    borderColor: "grey",
-    borderWidth,
-    left: -borderWidth / 2,
   },
 });
