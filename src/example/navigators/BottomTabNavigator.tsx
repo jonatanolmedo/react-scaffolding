@@ -85,6 +85,7 @@ export const BottomTabNavigator = () => {
         <BottomTab.Screen
           name="CategoriesScreen"
           options={({ navigation }) => ({
+            headerShown: false,
             title: "Categorías",
             tabBarTestID: StringsId.btnNavCategories,
             tabBarAccessibilityLabel: StringsId.btnNavCategories,

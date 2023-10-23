@@ -20,7 +20,7 @@ const ShoppingCartScreen = ({ route, navigation }: Props) => {
         flex: 1,
       }}
     >
-      <Text>Shopping Cart Screen</Text>
+      <Text style={{ color: "black" }}>Shopping Cart Screen</Text>
     </SafeAreaView>
   );
 };

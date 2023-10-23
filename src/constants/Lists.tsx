@@ -1,3 +1,5 @@
+import StringsId from "./StringsId";
+
 export const ProfileItemList: ItemData[] = [
   {
     id: "profile0",
@@ -39,5 +41,131 @@ export const SettingsItemList: ItemData[] = [
     title: "Redes",
     icon: require("../shared/assets/images/ic_wifi.png"),
     navigateTo: "",
+  },
+];
+
+export const ColorItemsList = [
+  {
+    id: "1", // acts as primary key, should be unique and non-empty string
+    testID: StringsId.radioOption1,
+    accessibilityLabel: StringsId.radioOption1,
+    value: StringsId.radioOption1,
+    color: "#FFFFFF",
+    borderColor: "#000000",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#000000",
+      borderRadius: 30,
+    },
+  },
+  {
+    id: "2",
+    testID: StringsId.radioOption2,
+    accessibilityLabel: StringsId.radioOption2,
+    value: StringsId.radioOption2,
+    color: "#FFFFFF",
+    borderColor: "#4E4E4E",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#4E4E4E",
+      borderRadius: 30,
+    },
+  },
+  {
+    id: "3",
+    testID: StringsId.radioOption3,
+    accessibilityLabel: StringsId.radioOption3,
+    value: StringsId.radioOption3,
+    color: "#FFFFFF",
+    borderColor: "#838383",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#838383",
+      borderRadius: 30,
+    },
+  },
+  {
+    id: "4",
+    testID: StringsId.radioOption4,
+    accessibilityLabel: StringsId.radioOption4,
+    value: StringsId.radioOption4,
+    color: "#FFFFFF",
+    borderColor: "#A3A3A3",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#A3A3A3",
+      borderRadius: 30,
+    },
+  },
+  {
+    id: "5",
+    testID: StringsId.radioOption5,
+    accessibilityLabel: StringsId.radioOption5,
+    value: StringsId.radioOption5,
+    color: "#FFFFFF",
+    borderColor: "#C4C4C4",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#C4C4C4",
+      borderRadius: 30,
+    },
+  },
+  {
+    id: "6",
+    testID: StringsId.radioOption6,
+    accessibilityLabel: StringsId.radioOption6,
+    value: StringsId.radioOption6,
+    color: "#FFFFFF",
+    borderColor: "#E3E3E3",
+    borderSize: 6,
+    size: 30,
+    containerStyle: {
+      backgroundColor: "#E3E3E3",
+      borderRadius: 30,
+    },
+  },
+];
+
+export const ProductsList = [
+  {
+    id: "Item1",
+    title: "Item 1",
+    description: "Descripción del Item 1",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item2",
+    title: "Item 2",
+    description: "Descripción del Item 2",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item3",
+    title: "Item 3",
+    description: "Descripción del Item 3",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item4",
+    title: "Item 4",
+    description: "Descripción del Item 4",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item5",
+    title: "Item 5",
+    description: "Descripción del Item 5",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
+  },
+  {
+    id: "Item6",
+    title: "Item 6",
+    description: "Descripción del Item 6",
+    imageSource: require("../shared/assets/images/ic_heart.png"),
   },
 ];

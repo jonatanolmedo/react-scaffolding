@@ -19,6 +19,25 @@ export default {
   btnNavShoppingCart: "btnNavShoppingCart",
   btnNavProfile: "btnNavProfile",
 
+  // Categories:
+  txtSearch: "txtSearch",
+  btnFilter: "btnFilter",
+  btnApply: "btnApply",
+  btnCancel: "btnCancel",
+  switchAll: "switchAll",
+  switchNew: "switchNew",
+  switchPreOwned: "switchPreOwned",
+  switchPrice: "switchPrice",
+  switchRelevance: "switchRelevance",
+  switchType: "switchType",
+  radioGroup: "radioGroup",
+  radioOption1: "radioOption1",
+  radioOption2: "radioOption2",
+  radioOption3: "radioOption3",
+  radioOption4: "radioOption4",
+  radioOption5: "radioOption5",
+  radioOption6: "radioOption6",
+
   // Lists:
   item: "item",
   listProfile: "listProfile",

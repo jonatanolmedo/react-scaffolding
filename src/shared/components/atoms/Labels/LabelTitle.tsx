@@ -3,19 +3,18 @@ import {
   StyleProp,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  ViewStyle,
+  TextStyle,
 } from "react-native";
 
 interface Props {
   title: string;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<TextStyle>;
   textColor?: string;
   testId?: string;
   accesibilityLabel?: string;
 }
 
-const LabelTitle: React.ForwardRefRenderFunction<TouchableOpacity, Props> = (
+const LabelTitle: React.ForwardRefRenderFunction<Text, Props> = (
   { title, style, testId, accesibilityLabel },
   ref
 ) => {
