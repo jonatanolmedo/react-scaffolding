@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # react-scaffolding
 
 Este proyecto de React Native utiliza una estructura de carpetas organizada para mejorar la modularidad y la legibilidad del código. A continuación se describe la estructura y la responsabilidad de cada carpeta.
@@ -119,3 +120,6 @@ Ran all test suites.
 Esto indica que todas las pruebas unitarias pasaron con éxito.
 
 
+=======
+# genesys-react-template
+>>>>>>> tr-demo-scaffolding-front-react/develop
